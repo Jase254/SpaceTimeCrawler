@@ -19,9 +19,7 @@ from uuid import uuid4
 logger = logging.getLogger(__name__)
 LOG_HEADER = "[CRAWLER]"
 
-pages_crawled = 0
-links_crawled = 0
-max_links = (0, 'url')
+
 
 @Producer(JekahnHunsingkLink)
 @GetterSetter(OneJekahnHunsingkUnProcessedLink)
@@ -32,11 +30,40 @@ class CrawlerFrame(IApplication):
         self.app_id = "JekahnHunsingk"
         self.frame = frame
         self.starttime = time()
+        self.link_dict = {}
+        self.max_links = (0, 'url')
+        self.elapse_time = 0
+        self.total_links = 0
+        self.total_pages_scraped = 0
+        self.total_time = 0
+        self.session_links = 0
+        self.session_pages = 0
+
+        self.read_history()
+
+    def read_history(self):
+        url = ''
+        max_link = 0
+
+        try:
+            with open('History.txt', 'r') as history:
+                self.total_links = history.readline()
+
+                max_link = history.readline()
+                url = history.readline()
+                self.max_links = (max_link, url)
+
+                self.total_pages_scraped = history.readline()
+                self.total_time = history.readline()
+
+                history.close()
+        except IOError as e:
+            pass
 
     def initialize(self):
         self.count = 0
 
-        logs = open('Analytics', 'a')
+        logs = open('Analytics.txt', 'a')
         logs.write('\nSession Date {}\n'.format(datetime.datetime.now()))
         logs.close()
 
@@ -59,36 +86,65 @@ class CrawlerFrame(IApplication):
             print "Got a link to download:", link.full_url
             downloaded = link.download()
             links = extract_next_links(downloaded)
+
+            print("link count: {}".format(len(links)))
+
+            valid_link_count = 0
             for l in links:
                 if is_valid(l):
+                    valid_link_count += 1
+                    self.total_links += 1
                     self.frame.add(JekahnHunsingkLink(l))
-            if pages_crawled == 5:
+
+            if valid_link_count > self.max_links:
+                self.max_links = (valid_link_count, downloaded)
+
+            self.link_dict[downloaded] = valid_link_count
+            self.session_links += valid_link_count
+            self.session_pages = len(self.link_dict)
+            if self.session_pages == 5:
+                self.pages_scraped += self.session_pages
                 self.shutdown()
 
     def shutdown(self):
-        global pages_crawled
-        global max_links
-        global links_crawled
 
-        elapse_time = time() - self.starttime
+        self.elapse_time = time() - self.starttime
+        self.total_time += self.elapse_time
 
-        print ("Time time spent this session: {} seconds.".format(elapse_time))
+        self.write_analytics()
 
-        logs = open('Analytics', 'a')
-        logs.write('\n\nSession Elapse Time {}\n'.format(elapse_time))
-        logs.write('Max Link Page: {}\n'.format(max_links[1]))
-        logs.write('Max LinksLinks: {}\n'.format(max_links[0]))
+        print ("Time time spent this session: {} seconds.".format(self.elapse_time))
+
+    def write_analytics(self):
+
+        history = open('History.txt', 'w')
+        history.writelines("{}".format(self.total_links))
+        history.writelines("{}".format(self.max_links[0]))
+        history.writelines("{}".format(self.max_links[1]))
+        history.writelines("{}".format(self.pages_scraped))
+        history.writelines("{}".format(self.total_time))
+
+        logs = open('Analytics.txt', 'a')
+        logs.write('\nCurrent Session:\n')
+        logs.write('Session Elapse Time {}\n'.format(self.elapse_time))
+        logs.write('Max Link Page: {}\n'.format(self.max_links[1]))
+        logs.write('Max Links: {}\n'.format(self.max_links[0]))
+        logs.write("Pages Scraped: {}\n".format(self.session_pages))
+        logs.write("Links Scraped: {}\n\n".format(self.session_links))
+
+        logs.write('\nScrape History:\n')
+        logs.write('Total Elapse Time {}\n'.format(self.total_time))
+        logs.write('Max Link Page: {}\n'.format(self.max_links[1]))
+        logs.write('Max Links: {}\n'.format(self.max_links[0]))
+        logs.write("Total Pages Scraped: {}\n".format(self.total_pages_scraped))
+        logs.write("Total Links Scraped: {}\n\n".format(self.total_links))
+
         logs.close()
         sys.exit(0)
 
+
 def extract_next_links(rawDataObj):
-    outputLinks = []
-
-    global pages_crawled
-    global max_links
-    global links_crawled
-
-    current_links = 0
+    output_links = []
 
     print("Code: {}".format(rawDataObj.http_code))
 
@@ -97,24 +153,12 @@ def extract_next_links(rawDataObj):
         rawDataObj.url = rawDataObj.final_url
 
     if rawDataObj.http_code == 200:
-        pages_crawled += 1
         soup = BS.BeautifulSoup(rawDataObj.content)
 
         for links in soup.findAll('a'):
-            outputLinks.append(urljoin(rawDataObj.url, links.get('href')).encode('ascii'))
+            output_links.append(urljoin(rawDataObj.url, links.get('href')).encode('ascii'))
 
-        current_links = len(outputLinks)
-        links_crawled += current_links
-
-        if current_links > max_links[0]:
-            max_links = (current_links, rawDataObj.url)
-
-        logs = open('Analytics', 'a')
-        logs.write('\tPage: {}\n'.format(rawDataObj.url))
-        logs.write('\tLinks Scraped: {}\n'.format(current_links))
-        logs.close()
-
-        print(outputLinks)
+        print(output_links)
 
     else:
         print("error! Page returned a {} code".format(rawDataObj.http_code))
@@ -130,7 +174,8 @@ def extract_next_links(rawDataObj):
     
     Suggested library: lxml
     '''
-    return outputLinks
+    return output_links
+
 
 def is_valid(url):
     '''
@@ -139,20 +184,25 @@ def is_valid(url):
     Robot rules and duplication rules are checked separately.
     This is a great place to filter out crawler traps.
     '''
+
+    print("Check Valid")
+
     parsed = urlparse(url)
+    print(url)
     if parsed.scheme not in set(["http", "https"]):
+        print('not http')
         return False
 
-    if url.find('calendar'):
-        return False
-
-    if parsed.query != '':
+    if url.__contains__('calendar') != -1:
+        print('calendar')
         return False
 
     if requests.get(url).status_code >= 400:
+        print('404')
         return False
 
     try:
+        print('Valid Link')
         return ".ics.uci.edu" in parsed.hostname \
                and not re.match(".*\.(css|js|bmp|gif|jpe?g|ico" + "|png|tiff?|mid|mp2|mp3|mp4" \
                                 + "|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf" \
