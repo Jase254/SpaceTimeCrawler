@@ -83,7 +83,7 @@ class CrawlerFrame(IApplication):
 
     def download_links(self, unprocessed_links):
         for link in unprocessed_links:
-            print "Got a link to download:", link.full_url
+            print ("Got a link to download: {}".format(link.full_url))
             downloaded = link.download()
             links = extract_next_links(downloaded)
 
@@ -107,7 +107,6 @@ class CrawlerFrame(IApplication):
                 self.shutdown()
 
     def shutdown(self):
-
         self.elapse_time = time() - self.starttime
         self.total_time += self.elapse_time
 
@@ -116,13 +115,13 @@ class CrawlerFrame(IApplication):
         print ("Time time spent this session: {} seconds.".format(self.elapse_time))
 
     def write_analytics(self):
-
         history = open('History.txt', 'w')
         history.writelines("{}".format(self.total_links))
         history.writelines("{}".format(self.max_links[0]))
         history.writelines("{}".format(self.max_links[1]))
         history.writelines("{}".format(self.pages_scraped))
         history.writelines("{}".format(self.total_time))
+	history.close()
 
         logs = open('Analytics.txt', 'a')
         logs.write('\nCurrent Session:\n')
@@ -169,9 +168,9 @@ def extract_next_links(rawDataObj):
     datamodel/search/server_datamodel.py
     the return of this function should be a list of urls in their absolute form
     Validation of link via is_valid function is done later (see line 42).
-    It is not required to remove duplicates that have already been downloaded. 
+    It is not required to remove duplicates that have already been downloaded.
     The frontier takes care of that.
-    
+
     Suggested library: lxml
     '''
     return output_links
@@ -184,27 +183,29 @@ def is_valid(url):
     Robot rules and duplication rules are checked separately.
     This is a great place to filter out crawler traps.
     '''
-
-    print("Check Valid")
-
+    #print("in is_valid")
+	
     parsed = urlparse(url)
-    print(url)
+    #print(url)
+	
     if parsed.scheme not in set(["http", "https"]):
-        print('not http')
+        print('INVALID: not http')
         return False
-
-    if url.__contains__('calendar') != -1:
-        print('calendar')
-        return False
+		
+    print(url)
+	
+    if "calendar" in url:
+	print ('INVALID: calendar')
+	return False
 
     if requests.get(url).status_code >= 400:
-        print('404')
+        print('INVALID: 404')
         return False
 
     try:
-        print('Valid Link')
+        # print('Valid Link')
         return ".ics.uci.edu" in parsed.hostname \
-               and not re.match(".*\.(css|js|bmp|gif|jpe?g|ico" + "|png|tiff?|mid|mp2|mp3|mp4" \
+            and not re.match(".*\.(css|js|bmp|gif|jpe?g|ico" + "|png|tiff?|mid|mp2|mp3|mp4" \
                                 + "|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf" \
                                 + "|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso|epub|dll|cnf|tgz|sha1" \
                                 + "|thmx|mso|arff|rtf|jar|csv" \
@@ -213,6 +214,3 @@ def is_valid(url):
     except TypeError:
         print ("TypeError for ", parsed)
         return False
-
-
-
