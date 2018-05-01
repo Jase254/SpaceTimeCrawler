@@ -7,6 +7,7 @@ from urlparse import urljoin
 import sys
 import datetime
 import requests
+import urllib3
 
 from lxml import html,etree
 import re, os
@@ -47,14 +48,14 @@ class CrawlerFrame(IApplication):
 
         try:
             with open('History.txt', 'r') as history:
-                self.total_links = history.readline()
+                self.total_links = int(history.readline())
 
-                max_link = history.readline()
+                max_link = int(history.readline())
                 url = history.readline()
                 self.max_links = (max_link, url)
 
-                self.total_pages_scraped = history.readline()
-                self.total_time = history.readline()
+                self.total_pages_scraped = int(history.readline())
+                self.total_time = float(history.readline())
 
                 history.close()
         except IOError as e:
@@ -64,7 +65,9 @@ class CrawlerFrame(IApplication):
         self.count = 0
 
         logs = open('Analytics.txt', 'a')
-        logs.write('\nSession Date {}\n'.format(datetime.datetime.now()))
+        logs.write('---------------------------------------\n')
+        logs.write('Session Date {}\n'.format(datetime.datetime.now()))
+        logs.write('---------------------------------------\n')
         logs.close()
 
         links = self.frame.get_new(OneJekahnHunsingkUnProcessedLink)
@@ -83,11 +86,11 @@ class CrawlerFrame(IApplication):
 
     def download_links(self, unprocessed_links):
         for link in unprocessed_links:
-            print ("Got a link to download: {}".format(link.full_url))
+            print ("\nGOT A LINK TO DOWNLOAD {}".format(link.full_url))
             downloaded = link.download()
             links = extract_next_links(downloaded)
 
-            print("link count: {}".format(len(links)))
+            # print("link count: {}".format(len(links)))
 
             valid_link_count = 0
             for l in links:
@@ -96,17 +99,15 @@ class CrawlerFrame(IApplication):
                     self.total_links += 1
                     self.frame.add(JekahnHunsingkLink(l))
 
-            if valid_link_count > self.max_links:
-                self.max_links = (valid_link_count, downloaded)
+            if valid_link_count > self.max_links[0]:
+                self.max_links = (valid_link_count, downloaded.url)
 
             self.link_dict[downloaded] = valid_link_count
             self.session_links += valid_link_count
             self.session_pages = len(self.link_dict)
-            if self.session_pages == 5:
-                self.pages_scraped += self.session_pages
-                self.shutdown()
 
     def shutdown(self):
+        self.total_pages_scraped += self.session_pages
         self.elapse_time = time() - self.starttime
         self.total_time += self.elapse_time
 
@@ -116,39 +117,38 @@ class CrawlerFrame(IApplication):
 
     def write_analytics(self):
         history = open('History.txt', 'w')
-        history.writelines("{}".format(self.total_links))
-        history.writelines("{}".format(self.max_links[0]))
-        history.writelines("{}".format(self.max_links[1]))
-        history.writelines("{}".format(self.pages_scraped))
+        history.writelines("{}\n".format(self.total_links))
+        history.writelines("{}\n".format(self.max_links[0]))
+        history.writelines("{}\n".format(self.max_links[1].strip()))
+        history.writelines("{}\n".format(self.total_pages_scraped))
         history.writelines("{}".format(self.total_time))
-	history.close()
+        history.close()
 
         logs = open('Analytics.txt', 'a')
         logs.write('\nCurrent Session:\n')
-        logs.write('Session Elapse Time {}\n'.format(self.elapse_time))
-        logs.write('Max Link Page: {}\n'.format(self.max_links[1]))
-        logs.write('Max Links: {}\n'.format(self.max_links[0]))
-        logs.write("Pages Scraped: {}\n".format(self.session_pages))
-        logs.write("Links Scraped: {}\n\n".format(self.session_links))
+        logs.write('\tSession Elapse Time {}\n'.format(self.elapse_time))
+        logs.write('\tMax Link Page: {}\n'.format(self.max_links[1].strip()))
+        logs.write('\tMax Links: {}\n'.format(self.max_links[0]))
+        logs.write("\tPages Scraped: {}\n".format(self.session_pages))
+        logs.write("\tLinks Scraped: {}\n\n".format(self.session_links))
 
         logs.write('\nScrape History:\n')
-        logs.write('Total Elapse Time {}\n'.format(self.total_time))
-        logs.write('Max Link Page: {}\n'.format(self.max_links[1]))
-        logs.write('Max Links: {}\n'.format(self.max_links[0]))
-        logs.write("Total Pages Scraped: {}\n".format(self.total_pages_scraped))
-        logs.write("Total Links Scraped: {}\n\n".format(self.total_links))
+        logs.write('\tTotal Elapse Time {}\n'.format(self.total_time))
+        logs.write('\tMax Link Page: {}\n'.format(self.max_links[1].strip()))
+        logs.write('\tMax Links: {}\n'.format(self.max_links[0]))
+        logs.write("\tTotal Pages Scraped: {}\n".format(self.total_pages_scraped))
+        logs.write("\tTotal Links Scraped: {}\n\n".format(self.total_links))
 
         logs.close()
-        sys.exit(0)
 
 
 def extract_next_links(rawDataObj):
     output_links = []
 
-    print("Code: {}".format(rawDataObj.http_code))
+    # print("Code: {}".format(rawDataObj.http_code))
 
     if rawDataObj.is_redirected:
-        print("redirected!")
+        # print("redirected!")
         rawDataObj.url = rawDataObj.final_url
 
     if rawDataObj.http_code == 200:
@@ -157,7 +157,7 @@ def extract_next_links(rawDataObj):
         for links in soup.findAll('a'):
             output_links.append(urljoin(rawDataObj.url, links.get('href')).encode('ascii'))
 
-        print(output_links)
+        # print(output_links)
 
     else:
         print("error! Page returned a {} code".format(rawDataObj.http_code))
@@ -189,17 +189,21 @@ def is_valid(url):
     #print(url)
 	
     if parsed.scheme not in set(["http", "https"]):
-        print('INVALID: not http')
+        # print('INVALID: not http')
         return False
 		
-    print(url)
+    # print(url)
 	
     if "calendar" in url:
-	print ('INVALID: calendar')
-	return False
+        # print ('INVALID: calendar')
+        return False
 
-    if requests.get(url).status_code >= 400:
-        print('INVALID: 404')
+    try:
+        if requests.get(url).status_code >= 400:
+            # print('INVALID: 404')
+            return False
+    except Exception as e:
+        # print(e.message)
         return False
 
     try:
