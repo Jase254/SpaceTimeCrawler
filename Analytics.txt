@@ -7,3 +7,22 @@ Session Date 2018-05-02 11:52:28.497000
 ---------------------------------------
 Session Date 2018-05-02 12:20:13.237000
 ---------------------------------------
+---------------------------------------
+Session Date 2018-05-02 12:39:37.977000
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/ugrad/index.php
+	Max Links: 87
+	Pages Scraped: 10
+	Links Scraped: 754
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/ugrad/index.php
+	Max Links: 87
+	Total Pages Scraped: 0
+	Total Links Scraped: 754
+

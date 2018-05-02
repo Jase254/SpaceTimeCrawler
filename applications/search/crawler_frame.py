@@ -126,6 +126,7 @@ class CrawlerFrame(IApplication):
         history.close()
 
         logs = open('Analytics.txt', 'a')
+        logs.write('---------------------------------------\n')
         logs.write('\nCurrent Session:\n')
         logs.write('\tSession Elapse Time {}\n'.format(self.elapse_time))
         logs.write('\tMax Link Page: {}\n'.format(self.max_links[1].strip()))
@@ -139,6 +140,7 @@ class CrawlerFrame(IApplication):
         logs.write('\tMax Links: {}\n'.format(self.max_links[0]))
         logs.write("\tTotal Pages Scraped: {}\n".format(self.total_pages_scraped))
         logs.write("\tTotal Links Scraped: {}\n\n".format(self.total_links))
+        logs.write('---------------------------------------\n')
 
         logs.close()
 
@@ -191,9 +193,6 @@ def is_valid(url):
         return False
 
     if len(url) > 100:       # if link is really long
-        return False
-
-    if "news" in url:
         return False
 
     if "?" in url or "%" in url or "&" in url or "+" in url or "=" in url:
