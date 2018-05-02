@@ -104,6 +104,7 @@ class CrawlerFrame(IApplication):
             if self.session_pages%10 == 0:
                 self.write_analytics()
             if self.session_pages == 3000:
+                self.elapse_time = time() - self.starttime
                 self.shutdown()
 
     def shutdown(self):

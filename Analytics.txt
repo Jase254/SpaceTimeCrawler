@@ -1,28 +1,321 @@
 ---------------------------------------
-Session Date 2018-05-02 11:41:08.256000
+Session Date 2018-05-02 12:48:56.296000
 ---------------------------------------
----------------------------------------
-Session Date 2018-05-02 11:52:28.497000
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 12:20:13.237000
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 12:39:37.977000
 ---------------------------------------
 
 Current Session:
 	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/index.php
-	Max Links: 87
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
+	Max Links: 91
 	Pages Scraped: 10
-	Links Scraped: 754
+	Links Scraped: 777
 
 
 Scrape History:
 	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/index.php
-	Max Links: 87
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
+	Max Links: 91
 	Total Pages Scraped: 0
-	Total Links Scraped: 754
+	Total Links Scraped: 777
 
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
+	Max Links: 91
+	Pages Scraped: 20
+	Links Scraped: 1487
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
+	Max Links: 91
+	Total Pages Scraped: 0
+	Total Links Scraped: 1487
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
+	Max Links: 95
+	Pages Scraped: 30
+	Links Scraped: 2246
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
+	Max Links: 95
+	Total Pages Scraped: 0
+	Total Links Scraped: 2246
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
+	Max Links: 95
+	Pages Scraped: 40
+	Links Scraped: 2776
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
+	Max Links: 95
+	Total Pages Scraped: 0
+	Total Links Scraped: 2776
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
+	Max Links: 95
+	Pages Scraped: 50
+	Links Scraped: 3322
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
+	Max Links: 95
+	Total Pages Scraped: 0
+	Total Links Scraped: 3322
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Pages Scraped: 60
+	Links Scraped: 4059
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Total Pages Scraped: 0
+	Total Links Scraped: 4059
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Pages Scraped: 70
+	Links Scraped: 4817
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Total Pages Scraped: 0
+	Total Links Scraped: 4817
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Pages Scraped: 80
+	Links Scraped: 5418
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Total Pages Scraped: 0
+	Total Links Scraped: 5418
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Pages Scraped: 90
+	Links Scraped: 5809
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Total Pages Scraped: 0
+	Total Links Scraped: 5809
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Pages Scraped: 100
+	Links Scraped: 6419
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Total Pages Scraped: 0
+	Total Links Scraped: 6419
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Pages Scraped: 110
+	Links Scraped: 7133
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Total Pages Scraped: 0
+	Total Links Scraped: 7133
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Pages Scraped: 120
+	Links Scraped: 7498
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Total Pages Scraped: 0
+	Total Links Scraped: 7498
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Pages Scraped: 130
+	Links Scraped: 7922
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Total Pages Scraped: 0
+	Total Links Scraped: 7922
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Pages Scraped: 140
+	Links Scraped: 8268
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
+	Max Links: 98
+	Total Pages Scraped: 0
+	Total Links Scraped: 8268
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://isg.ics.uci.edu/events.html
+	Max Links: 176
+	Pages Scraped: 150
+	Links Scraped: 8714
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://isg.ics.uci.edu/events.html
+	Max Links: 176
+	Total Pages Scraped: 0
+	Total Links Scraped: 8714
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://isg.ics.uci.edu/events.html
+	Max Links: 176
+	Pages Scraped: 160
+	Links Scraped: 8932
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://isg.ics.uci.edu/events.html
+	Max Links: 176
+	Total Pages Scraped: 0
+	Total Links Scraped: 8932
+
+---------------------------------------
+---------------------------------------
+
+Current Session:
+	Session Elapse Time 0
+	Max Link Page: http://isg.ics.uci.edu/events.html
+	Max Links: 176
+	Pages Scraped: 170
+	Links Scraped: 9494
+
+
+Scrape History:
+	Total Elapse Time 0
+	Max Link Page: http://isg.ics.uci.edu/events.html
+	Max Links: 176
+	Total Pages Scraped: 0
+	Total Links Scraped: 9494
+
+---------------------------------------
+---------------------------------------
+Session Date 2018-05-02 14:19:24.002000
+---------------------------------------
+---------------------------------------
+Session Date 2018-05-02 14:19:53.477000
+---------------------------------------
+---------------------------------------
+Session Date 2018-05-02 14:21:40.535000
+---------------------------------------
+---------------------------------------
+Session Date 2018-05-02 14:23:38.382000
+---------------------------------------
