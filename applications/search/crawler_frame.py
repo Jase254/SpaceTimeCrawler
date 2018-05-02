@@ -101,7 +101,9 @@ class CrawlerFrame(IApplication):
             self.link_dict[downloaded] = valid_link_count    # should this be keying downloaded.url?
             self.session_links += valid_link_count
             self.session_pages += 1                          # should we just add 1 each time?
-            if self.session_pages == 500:
+            if self.session_pages%10 == 0:
+                self.write_analytics()
+            if self.session_pages == 3000:
                 self.shutdown()
 
     def shutdown(self):
@@ -144,10 +146,7 @@ class CrawlerFrame(IApplication):
 def extract_next_links(rawDataObj):
     output_links = []
 
-    # print("Code: {}".format(rawDataObj.http_code))
-
     if rawDataObj.is_redirected:
-        # print("redirected!")
         rawDataObj.url = rawDataObj.final_url
 
     if rawDataObj.http_code == 200:
@@ -155,9 +154,6 @@ def extract_next_links(rawDataObj):
 
         for links in soup.findAll('a'):
             output_links.append(urljoin(rawDataObj.url, links.get('href')).encode('ascii'))
-
-        # print(output_links)
-
     else:
         print("ERROR! Page returned a {} code".format(rawDataObj.http_code))
         print(rawDataObj.error_message)
@@ -186,23 +182,18 @@ def is_valid(url):
 
 
     if parsed.scheme not in set(["http", "https"]):
-        print("parse scheme")
         return False
 
     if parsed.fragment != '':   # if link has fragment id
-        print("fragment")
         return False
 
     if "calendar" in url:       # if link is calender
-        print("calendar")
         return False
 
     if len(url) > 100:       # if link is really long
-        print("url length")
         return False
 
     if "news" in url:
-        print ("news")
         return False
 
     if "?" in url or "%" in url or "&" in url or "+" in url or "=" in url:
@@ -215,13 +206,10 @@ def is_valid(url):
     try:
         r = requests.get(url)
         if r.status_code >= 400:   # double checking returns error code
-            print("status code {}".format(r.status_code))
             return False
         if r.encoding.lower() != 'utf-8' and r.encoding.lower() != 'iso-8859-1':
-            print("encoding {}".format(r.encoding))
             return False
     except Exception as e:
-        print("request exception {}".format(e))
         return False
 
     try:
