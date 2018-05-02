@@ -205,6 +205,9 @@ def is_valid(url):
         print ("news")
         return False
 
+    if "?" in url or "%" in url or "&" in url or "+" in url or "=" in url:
+        return False
+
     # maybe check for event and/or news in url
     # decode/debug error for languages we got - tried that with content-language below
     # are we double checking that the url is in absoulte form?
