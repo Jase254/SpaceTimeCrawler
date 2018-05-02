@@ -43,9 +43,6 @@ class CrawlerFrame(IApplication):
         self.read_history()
 
     def read_history(self):
-        url = ''
-        max_link = 0
-
         try:
             with open('History.txt', 'r') as history:
                 self.total_links = int(history.readline())
@@ -62,8 +59,6 @@ class CrawlerFrame(IApplication):
             pass
 
     def initialize(self):
-        self.count = 0
-
         logs = open('Analytics.txt', 'a')
         logs.write('---------------------------------------\n')
         logs.write('Session Date {}\n'.format(datetime.datetime.now()))
@@ -72,11 +67,11 @@ class CrawlerFrame(IApplication):
 
         links = self.frame.get_new(OneJekahnHunsingkUnProcessedLink)
         if len(links) > 0:
-            print "Resuming from the previous state."
+            print ("Resuming from the previous state.")
             self.download_links(links)
         else:
             l = JekahnHunsingkLink("http://www.ics.uci.edu/")
-            print l.full_url
+            print (l.full_url)
             self.frame.add(l)
 
     def update(self):
@@ -96,15 +91,18 @@ class CrawlerFrame(IApplication):
             for l in links:
                 if is_valid(l):
                     valid_link_count += 1
-                    self.total_links += 1
                     self.frame.add(JekahnHunsingkLink(l))
+            print ("{} has {} valid links".format(link.full_url, valid_link_count))
+            self.total_links += valid_link_count
 
             if valid_link_count > self.max_links[0]:
-                self.max_links = (valid_link_count, downloaded.url)
+                self.max_links = (valid_link_count, downloaded.url)  # should we check for final_url?
 
-            self.link_dict[downloaded] = valid_link_count
+            self.link_dict[downloaded] = valid_link_count    # should this be keying downloaded.url?
             self.session_links += valid_link_count
-            self.session_pages = len(self.link_dict)
+            self.session_pages += 1                          # should we just add 1 each time?
+            if self.session_pages == 500:
+                self.shutdown()
 
     def shutdown(self):
         self.total_pages_scraped += self.session_pages
@@ -114,6 +112,7 @@ class CrawlerFrame(IApplication):
         self.write_analytics()
 
         print ("Time time spent this session: {} seconds.".format(self.elapse_time))
+        sys.exit(0)
 
     def write_analytics(self):
         history = open('History.txt', 'w')
@@ -160,7 +159,7 @@ def extract_next_links(rawDataObj):
         # print(output_links)
 
     else:
-        print("error! Page returned a {} code".format(rawDataObj.http_code))
+        print("ERROR! Page returned a {} code".format(rawDataObj.http_code))
         print(rawDataObj.error_message)
 
     '''
@@ -183,31 +182,46 @@ def is_valid(url):
     Robot rules and duplication rules are checked separately.
     This is a great place to filter out crawler traps.
     '''
-    #print("in is_valid")
-	
     parsed = urlparse(url)
-    #print(url)
-	
+
+
     if parsed.scheme not in set(["http", "https"]):
-        # print('INVALID: not http')
-        return False
-		
-    # print(url)
-	
-    if "calendar" in url:
-        # print ('INVALID: calendar')
+        print("parse scheme")
         return False
 
+    if parsed.fragment != '':   # if link has fragment id
+        print("fragment")
+        return False
+
+    if "calendar" in url:       # if link is calender
+        print("calendar")
+        return False
+
+    if len(url) > 100:       # if link is really long
+        print("url length")
+        return False
+
+    if "news" in url:
+        print ("news")
+        return False
+
+    # maybe check for event and/or news in url
+    # decode/debug error for languages we got - tried that with content-language below
+    # are we double checking that the url is in absoulte form?
+
     try:
-        if requests.get(url).status_code >= 400:
-            # print('INVALID: 404')
+        r = requests.get(url)
+        if r.status_code >= 400:   # double checking returns error code
+            print("status code {}".format(r.status_code))
+            return False
+        if r.encoding.lower() != 'utf-8' and r.encoding.lower() != 'iso-8859-1':
+            print("encoding {}".format(r.encoding))
             return False
     except Exception as e:
-        # print(e.message)
+        print("request exception {}".format(e))
         return False
 
     try:
-        # print('Valid Link')
         return ".ics.uci.edu" in parsed.hostname \
             and not re.match(".*\.(css|js|bmp|gif|jpe?g|ico" + "|png|tiff?|mid|mp2|mp3|mp4" \
                                 + "|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf" \
