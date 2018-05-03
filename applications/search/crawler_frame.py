@@ -80,32 +80,39 @@ class CrawlerFrame(IApplication):
             self.download_links(unprocessed_links)
 
     def download_links(self, unprocessed_links):
-        for link in unprocessed_links:
-            print ("\nGOT A LINK TO DOWNLOAD {}".format(link.full_url))
-            downloaded = link.download()
-            links = extract_next_links(downloaded)
+        try:
+            for link in unprocessed_links:
+                print ("\nGOT A LINK TO DOWNLOAD {}".format(link.full_url))
+                downloaded = link.download()
+                links = extract_next_links(downloaded)
 
-            # print("link count: {}".format(len(links)))
+                valid_link_count = 0
+                for l in links:
+                    if is_valid(l):
+                        valid_link_count += 1
+                        self.frame.add(JekahnHunsingkLink(l))
 
-            valid_link_count = 0
-            for l in links:
-                if is_valid(l):
-                    valid_link_count += 1
-                    self.frame.add(JekahnHunsingkLink(l))
-            print ("{} has {} valid links".format(link.full_url, valid_link_count))
-            self.total_links += valid_link_count
+                print ("{} has {} valid links".format(link.full_url, valid_link_count))
+                self.total_links += valid_link_count
 
-            if valid_link_count > self.max_links[0]:
-                self.max_links = (valid_link_count, downloaded.url)  # should we check for final_url?
+                if valid_link_count > self.max_links[0]:
+                    self.max_links = (valid_link_count, downloaded.url)  # should we check for final_url?
 
-            self.link_dict[downloaded] = valid_link_count    # should this be keying downloaded.url?
-            self.session_links += valid_link_count
-            self.session_pages += 1                          # should we just add 1 each time?
-            if self.session_pages%10 == 0:
-                self.write_analytics()
-            if self.session_pages == 3000:
-                self.elapse_time = time() - self.starttime
+                self.link_dict[downloaded] = valid_link_count    # should this be keying downloaded.url?
+                self.session_links += valid_link_count
+                self.session_pages += 1                          # should we just add 1 each time?
+                if self.session_pages%10 == 0:
+                    self.write_analytics()
+                if self.session_pages == 3000:
+                    self.elapse_time = time() - self.starttime
+                    self.shutdown()
+        except KeyboardInterrupt:
+            try:
                 self.shutdown()
+            except SystemExit:
+                os._exit(0)
+
+
 
     def shutdown(self):
         self.total_pages_scraped += self.session_pages
@@ -113,7 +120,7 @@ class CrawlerFrame(IApplication):
         self.total_time += self.elapse_time
 
         self.write_analytics()
-
+        print ("SHUTTING DOWN . . .")
         print ("Time time spent this session: {} seconds.".format(self.elapse_time))
         sys.exit(0)
 
@@ -183,25 +190,16 @@ def is_valid(url):
     '''
     parsed = urlparse(url)
 
-
     if parsed.scheme not in set(["http", "https"]):
         return False
-
     if parsed.fragment != '':   # if link has fragment id
         return False
-
     if "calendar" in url:       # if link is calender
         return False
-
     if len(url) > 100:       # if link is really long
         return False
-
     if "?" in url or "%" in url or "&" in url or "+" in url or "=" in url:
         return False
-
-    # maybe check for event and/or news in url
-    # decode/debug error for languages we got - tried that with content-language below
-    # are we double checking that the url is in absoulte form?
 
     try:
         r = requests.get(url)
