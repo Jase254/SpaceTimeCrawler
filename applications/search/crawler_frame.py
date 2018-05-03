@@ -8,11 +8,12 @@ import sys
 import datetime
 import requests
 import urllib3
-
+import lxml
 from lxml import html,etree
 import re, os
 from time import time
 from uuid import uuid4
+import urllib2
 
 from urlparse import urlparse, parse_qs
 from uuid import uuid4
@@ -92,7 +93,6 @@ class CrawlerFrame(IApplication):
                         valid_link_count += 1
                         self.frame.add(JekahnHunsingkLink(l))
 
-                print ("{} has {} valid links".format(link.full_url, valid_link_count))
                 self.total_links += valid_link_count
 
                 if valid_link_count > self.max_links[0]:
@@ -102,8 +102,10 @@ class CrawlerFrame(IApplication):
                 self.session_links += valid_link_count
                 self.session_pages += 1                          # should we just add 1 each time?
                 if self.session_pages%10 == 0:
+                    self.elapse_time = time() - self.starttime
+                    self.total_time += self.elapse_time
                     self.write_analytics()
-                if self.session_pages == 3000:
+                if self.session_pages == 3000 or self.total_pages_scraped == 3000:
                     self.elapse_time = time() - self.starttime
                     self.shutdown()
         except KeyboardInterrupt:
@@ -111,7 +113,11 @@ class CrawlerFrame(IApplication):
                 self.shutdown()
             except SystemExit:
                 os._exit(0)
-
+        except IOError:
+            try:
+                self.shutdown()
+            except SystemExit:
+                os._exit(0)
 
 
     def shutdown(self):
@@ -133,6 +139,8 @@ class CrawlerFrame(IApplication):
         history.writelines("{}".format(self.total_time))
         history.close()
 
+        # we should be writing or link dictionary in here too
+        # by subdomain for dict is that every link?
         logs = open('Analytics.txt', 'a')
         logs.write('---------------------------------------\n')
         logs.write('\nCurrent Session:\n')
@@ -155,7 +163,8 @@ class CrawlerFrame(IApplication):
 
 def extract_next_links(rawDataObj):
     output_links = []
-
+   #import lxml, change
+   # html.parse
     if rawDataObj.is_redirected:
         rawDataObj.url = rawDataObj.final_url
 
@@ -167,6 +176,7 @@ def extract_next_links(rawDataObj):
     else:
         print("ERROR! Page returned a {} code".format(rawDataObj.http_code))
         print(rawDataObj.error_message)
+        return []
 
     '''
     rawDataObj is an object of type UrlResponse declared at L20-30
@@ -196,11 +206,13 @@ def is_valid(url):
         return False
     if "calendar" in url:       # if link is calender
         return False
-    if len(url) > 100:       # if link is really long
+    if len(url) > 100:          # if link is really long
         return False
-    if "?" in url or "%" in url or "&" in url or "+" in url or "=" in url:
+    if "?" in url or "%" in url or "&" in url or "+" in url or "=" in url or "~" in url:
         return False
-
+    if url == "http://mhcid.ics.uci.edu/admissions/costs-and-financial-aid":
+        return False
+    # back to back directories
     try:
         r = requests.get(url)
         if r.status_code >= 400:   # double checking returns error code
