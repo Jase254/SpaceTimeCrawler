@@ -1,5 +1,39 @@
-21859
-98
-http://www.ics.uci.edu/about/bren/bren_press.php
-31
-974.015000104
+12140
+267
+http://www.ics.uci.edu/~dechter/publications.html
+324
+134561.707026
+mcs.ics.uci.edu	252
+ugradforms.ics.uci.edu	3
+archive.ics.uci.edu	1
+support.ics.uci.edu	7
+netreg.ics.uci.edu	21
+duttgroup.ics.uci.edu	2
+gats.ics.uci.edu	1
+sli.ics.uci.edu	4
+ngs.ics.uci.edu	515
+sconce.ics.uci.edu	10
+cradl.ics.uci.edu	1
+mhcid.ics.uci.edu	167
+radicle.ics.uci.edu	1
+graphmod.ics.uci.edu	1
+sherlock.ics.uci.edu	1
+www.graphics.ics.uci.edu	1
+wics.ics.uci.edu	1
+www.ics.uci.edu	10739
+futurehealth.ics.uci.edu	106
+webmail.ics.uci.edu	21
+student-council.ics.uci.edu	1
+sprout.ics.uci.edu	1
+asterix.ics.uci.edu	1
+cml.ics.uci.edu	73
+intranet.ics.uci.edu	146
+vision.ics.uci.edu	11
+emj.ics.uci.edu	2
+elms.ics.uci.edu	4
+malek.ics.uci.edu	1
+swiki.ics.uci.edu	49
+keys.ics.uci.edu	1
+honors.ics.uci.edu	51
+checkmate.ics.uci.edu	1
+hombao.ics.uci.edu	1

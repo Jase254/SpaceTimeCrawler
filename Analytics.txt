@@ -1,10 +1,9 @@
 ---------------------------------------
-Session Date 2018-05-02 12:48:56.296000
----------------------------------------
+Session Date 2018-05-04 12:46:58.399427
 ---------------------------------------
 
 Current Session:
-	Session Elapse Time 0
+	Session Elapse Time 278.770491123
 	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
 	Max Links: 91
 	Pages Scraped: 10
@@ -12,931 +11,1300 @@ Current Session:
 
 
 Scrape History:
-	Total Elapse Time 0
+	Total Elapse Time 278.770491123
 	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
 	Max Links: 91
-	Total Pages Scraped: 0
+	Total Pages Scraped: 10
 	Total Links Scraped: 777
 
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mhcid.ics.uci.edu: 1
+	intranet.ics.uci.edu: 10
+	www.ics.uci.edu: 766
+
 ---------------------------------------
 
 Current Session:
-	Session Elapse Time 0
+	Session Elapse Time 504.758442163
 	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
 	Max Links: 91
 	Pages Scraped: 20
-	Links Scraped: 1487
+	Links Scraped: 1513
 
 
 Scrape History:
-	Total Elapse Time 0
+	Total Elapse Time 783.528933287
 	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
 	Max Links: 91
-	Total Pages Scraped: 0
-	Total Links Scraped: 1487
+	Total Pages Scraped: 20
+	Total Links Scraped: 1513
 
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 39
+	intranet.ics.uci.edu: 19
+	www.ics.uci.edu: 1454
+
 ---------------------------------------
 
 Current Session:
-	Session Elapse Time 0
+	Session Elapse Time 769.449016094
 	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
 	Max Links: 95
 	Pages Scraped: 30
-	Links Scraped: 2246
+	Links Scraped: 2334
 
 
 Scrape History:
-	Total Elapse Time 0
+	Total Elapse Time 1552.97794938
 	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
 	Max Links: 95
-	Total Pages Scraped: 0
-	Total Links Scraped: 2246
+	Total Pages Scraped: 30
+	Total Links Scraped: 2334
 
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 40
+	intranet.ics.uci.edu: 30
+	www.ics.uci.edu: 2261
+
 ---------------------------------------
 
 Current Session:
-	Session Elapse Time 0
+	Session Elapse Time 941.602996111
 	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
 	Max Links: 95
 	Pages Scraped: 40
-	Links Scraped: 2776
+	Links Scraped: 2779
 
 
 Scrape History:
-	Total Elapse Time 0
+	Total Elapse Time 2494.58094549
 	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
 	Max Links: 95
-	Total Pages Scraped: 0
-	Total Links Scraped: 2776
+	Total Pages Scraped: 40
+	Total Links Scraped: 2779
 
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 4
+	netreg.ics.uci.edu: 4
+	swiki.ics.uci.edu: 4
+	intranet.ics.uci.edu: 36
+	mhcid.ics.uci.edu: 76
+	www.ics.uci.edu: 2652
+
 ---------------------------------------
 
 Current Session:
-	Session Elapse Time 0
+	Session Elapse Time 1153.31040215
 	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
 	Max Links: 95
 	Pages Scraped: 50
-	Links Scraped: 3322
+	Links Scraped: 3426
 
 
 Scrape History:
-	Total Elapse Time 0
+	Total Elapse Time 3647.89134765
 	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
 	Max Links: 95
 	Total Pages Scraped: 0
-	Total Links Scraped: 3322
+	Total Links Scraped: 3426
 
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 10
+	support.ics.uci.edu: 1
+	netreg.ics.uci.edu: 11
+	swiki.ics.uci.edu: 10
+	intranet.ics.uci.edu: 46
+	mhcid.ics.uci.edu: 76
+	www.ics.uci.edu: 3269
+
 ---------------------------------------
 
 Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
+	Session Elapse Time 1365.55093718
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
+	Max Links: 95
 	Pages Scraped: 60
-	Links Scraped: 4059
+	Links Scraped: 4029
 
 
 Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 4059
+	Total Elapse Time 5013.44228482
+	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
+	Max Links: 95
+	Total Pages Scraped: 60
+	Total Links Scraped: 4029
 
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 2
+	ugradforms.ics.uci.edu: 1
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 14
+	support.ics.uci.edu: 1
+	netreg.ics.uci.edu: 14
+	swiki.ics.uci.edu: 16
+	intranet.ics.uci.edu: 55
+	mhcid.ics.uci.edu: 76
+	www.ics.uci.edu: 3845
+	elms.ics.uci.edu: 4
+
 ---------------------------------------
 
 Current Session:
-	Session Elapse Time 0
+	Session Elapse Time 1754.72685719
 	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
 	Max Links: 98
 	Pages Scraped: 70
-	Links Scraped: 4817
+	Links Scraped: 4805
 
 
 Scrape History:
-	Total Elapse Time 0
+	Total Elapse Time 6768.16914201
 	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
 	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 4817
+	Total Pages Scraped: 70
+	Total Links Scraped: 4805
 
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 2
+	ugradforms.ics.uci.edu: 1
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 14
+	support.ics.uci.edu: 1
+	netreg.ics.uci.edu: 14
+	swiki.ics.uci.edu: 16
+	intranet.ics.uci.edu: 72
+	mhcid.ics.uci.edu: 76
+	www.ics.uci.edu: 4604
+	elms.ics.uci.edu: 4
+
 ---------------------------------------
 
 Current Session:
-	Session Elapse Time 0
+	Session Elapse Time 1983.09463406
 	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
 	Max Links: 98
 	Pages Scraped: 80
-	Links Scraped: 5418
+	Links Scraped: 5475
 
 
 Scrape History:
-	Total Elapse Time 0
+	Total Elapse Time 8751.26377606
 	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
 	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 5418
+	Total Pages Scraped: 80
+	Total Links Scraped: 5475
 
 ---------------------------------------
----------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 2
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 14
+	support.ics.uci.edu: 1
+	netreg.ics.uci.edu: 14
+	swiki.ics.uci.edu: 16
+	intranet.ics.uci.edu: 85
+	mhcid.ics.uci.edu: 94
+	www.ics.uci.edu: 5242
+	elms.ics.uci.edu: 4
 
 Current Session:
-	Session Elapse Time 0
+	Session Elapse Time 2353.1708951
 	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
 	Max Links: 98
 	Pages Scraped: 90
-	Links Scraped: 5809
+	Links Scraped: 6138
 
 
 Scrape History:
-	Total Elapse Time 0
+	Total Elapse Time 11104.4346712
 	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
 	Max Links: 98
 	Total Pages Scraped: 0
-	Total Links Scraped: 5809
+	Total Links Scraped: 6138
 
 ---------------------------------------
----------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 15
+	support.ics.uci.edu: 2
+	netreg.ics.uci.edu: 15
+	swiki.ics.uci.edu: 17
+	keys.ics.uci.edu: 1
+	intranet.ics.uci.edu: 96
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 5869
+	elms.ics.uci.edu: 4
 
 Current Session:
-	Session Elapse Time 0
+	Session Elapse Time 2537.861413
 	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
 	Max Links: 98
 	Pages Scraped: 100
-	Links Scraped: 6419
+	Links Scraped: 6442
 
 
 Scrape History:
-	Total Elapse Time 0
+	Total Elapse Time 13642.2960842
 	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
 	Max Links: 98
 	Total Pages Scraped: 0
-	Total Links Scraped: 6419
+	Total Links Scraped: 6442
 
 ---------------------------------------
----------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	support.ics.uci.edu: 2
+	netreg.ics.uci.edu: 17
+	swiki.ics.uci.edu: 42
+	keys.ics.uci.edu: 1
+	intranet.ics.uci.edu: 101
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 6139
+	elms.ics.uci.edu: 4
 
 Current Session:
-	Session Elapse Time 0
+	Session Elapse Time 2745.72642803
 	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
 	Max Links: 98
 	Pages Scraped: 110
-	Links Scraped: 7133
+	Links Scraped: 7000
 
 
 Scrape History:
-	Total Elapse Time 0
+	Total Elapse Time 16388.0225122
 	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
 	Max Links: 98
 	Total Pages Scraped: 0
-	Total Links Scraped: 7133
+	Total Links Scraped: 7000
 
 ---------------------------------------
----------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	intranet.ics.uci.edu: 108
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 6685
+	elms.ics.uci.edu: 4
 
 Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
+	Session Elapse Time 3022.6793921
+	Max Link Page: http://www.ics.uci.edu/faculty/index.php
+	Max Links: 154
 	Pages Scraped: 120
-	Links Scraped: 7498
+	Links Scraped: 7597
 
 
 Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
+	Total Elapse Time 19410.7019043
+	Max Link Page: http://www.ics.uci.edu/faculty/index.php
+	Max Links: 154
 	Total Pages Scraped: 0
-	Total Links Scraped: 7498
+	Total Links Scraped: 7597
 
 ---------------------------------------
----------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	intranet.ics.uci.edu: 115
+	ngs.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 7273
+	elms.ics.uci.edu: 4
 
 Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
+	Session Elapse Time 3483.08292103
+	Max Link Page: http://www.ics.uci.edu/faculty/index.php
+	Max Links: 154
 	Pages Scraped: 130
-	Links Scraped: 7922
+	Links Scraped: 7825
 
 
 Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
+	Total Elapse Time 22893.7848253
+	Max Link Page: http://www.ics.uci.edu/faculty/index.php
+	Max Links: 154
 	Total Pages Scraped: 0
-	Total Links Scraped: 7922
+	Total Links Scraped: 7825
 
 ---------------------------------------
----------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	intranet.ics.uci.edu: 116
+	ngs.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 7500
+	elms.ics.uci.edu: 4
 
 Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
+	Session Elapse Time 3616.0942471
+	Max Link Page: http://www.ics.uci.edu/faculty/index.php
+	Max Links: 154
 	Pages Scraped: 140
-	Links Scraped: 8268
+	Links Scraped: 8006
 
 
 Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
+	Total Elapse Time 26509.8790724
+	Max Link Page: http://www.ics.uci.edu/faculty/index.php
+	Max Links: 154
 	Total Pages Scraped: 0
-	Total Links Scraped: 8268
+	Total Links Scraped: 8006
 
 ---------------------------------------
----------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	futurehealth.ics.uci.edu: 1
+	intranet.ics.uci.edu: 117
+	ngs.ics.uci.edu: 82
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 7598
+	elms.ics.uci.edu: 4
 
 Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://isg.ics.uci.edu/events.html
-	Max Links: 176
+	Session Elapse Time 3841.32602501
+	Max Link Page: http://www.ics.uci.edu/faculty/index.php
+	Max Links: 154
 	Pages Scraped: 150
-	Links Scraped: 8714
+	Links Scraped: 8225
 
 
 Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://isg.ics.uci.edu/events.html
-	Max Links: 176
+	Total Elapse Time 30351.2050974
+	Max Link Page: http://www.ics.uci.edu/faculty/index.php
+	Max Links: 154
 	Total Pages Scraped: 0
-	Total Links Scraped: 8714
+	Total Links Scraped: 8225
 
 ---------------------------------------
----------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	sli.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	futurehealth.ics.uci.edu: 1
+	intranet.ics.uci.edu: 118
+	cml.ics.uci.edu: 1
+	ngs.ics.uci.edu: 154
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 7737
+	elms.ics.uci.edu: 4
 
 Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://isg.ics.uci.edu/events.html
-	Max Links: 176
+	Session Elapse Time 4097.00895405
+	Max Link Page: http://www.ics.uci.edu/faculty/index.php
+	Max Links: 154
 	Pages Scraped: 160
-	Links Scraped: 8932
+	Links Scraped: 8477
 
 
 Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://isg.ics.uci.edu/events.html
-	Max Links: 176
+	Total Elapse Time 34448.2140515
+	Max Link Page: http://www.ics.uci.edu/faculty/index.php
+	Max Links: 154
 	Total Pages Scraped: 0
-	Total Links Scraped: 8932
+	Total Links Scraped: 8477
 
 ---------------------------------------
----------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	sli.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	futurehealth.ics.uci.edu: 1
+	vision.ics.uci.edu: 4
+	intranet.ics.uci.edu: 118
+	cml.ics.uci.edu: 1
+	ngs.ics.uci.edu: 334
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 7805
+	elms.ics.uci.edu: 4
 
 Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://isg.ics.uci.edu/events.html
-	Max Links: 176
+	Session Elapse Time 4312.44795012
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
 	Pages Scraped: 170
-	Links Scraped: 9494
+	Links Scraped: 8796
 
 
 Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://isg.ics.uci.edu/events.html
-	Max Links: 176
+	Total Elapse Time 38760.6620016
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
 	Total Pages Scraped: 0
-	Total Links Scraped: 9494
+	Total Links Scraped: 8796
 
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	sli.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	futurehealth.ics.uci.edu: 1
+	vision.ics.uci.edu: 4
+	intranet.ics.uci.edu: 118
+	cml.ics.uci.edu: 1
+	ngs.ics.uci.edu: 370
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 8088
+	elms.ics.uci.edu: 4
+
+Current Session:
+	Session Elapse Time 4384.17964315
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 180
+	Links Scraped: 8816
+
+
+Scrape History:
+	Total Elapse Time 43144.8416448
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 8816
+
 ---------------------------------------
-Session Date 2018-05-02 14:19:24.002000
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	sli.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	futurehealth.ics.uci.edu: 1
+	vision.ics.uci.edu: 4
+	intranet.ics.uci.edu: 118
+	cml.ics.uci.edu: 1
+	ngs.ics.uci.edu: 370
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 8108
+	elms.ics.uci.edu: 4
+
+Current Session:
+	Session Elapse Time 4486.56784201
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 190
+	Links Scraped: 8836
+
+
+Scrape History:
+	Total Elapse Time 47631.4094868
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 8836
+
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	sli.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	futurehealth.ics.uci.edu: 1
+	vision.ics.uci.edu: 4
+	intranet.ics.uci.edu: 118
+	cml.ics.uci.edu: 1
+	ngs.ics.uci.edu: 370
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 8128
+	elms.ics.uci.edu: 4
+
+Current Session:
+	Session Elapse Time 4818.67113614
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 200
+	Links Scraped: 8872
+
+
+Scrape History:
+	Total Elapse Time 52450.0806229
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 8872
+
 ---------------------------------------
-Session Date 2018-05-02 14:19:53.477000
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	sli.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	futurehealth.ics.uci.edu: 1
+	vision.ics.uci.edu: 4
+	intranet.ics.uci.edu: 118
+	cml.ics.uci.edu: 1
+	ngs.ics.uci.edu: 370
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 8164
+	elms.ics.uci.edu: 4
+
+Current Session:
+	Session Elapse Time 4978.24587703
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 210
+	Links Scraped: 9225
+
+
+Scrape History:
+	Total Elapse Time 57428.3264999
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 9225
+
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	sli.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	futurehealth.ics.uci.edu: 1
+	vision.ics.uci.edu: 4
+	intranet.ics.uci.edu: 121
+	cml.ics.uci.edu: 1
+	ngs.ics.uci.edu: 406
+	mhcid.ics.uci.edu: 113
+	www.ics.uci.edu: 8477
+	elms.ics.uci.edu: 4
+
+Current Session:
+	Session Elapse Time 5121.71810603
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 220
+	Links Scraped: 9450
+
+
+Scrape History:
+	Total Elapse Time 62550.044606
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 9450
+
 ---------------------------------------
-Session Date 2018-05-02 14:21:40.535000
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 17
+	futurehealth.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 442
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 113
+	graphmod.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	www.ics.uci.edu: 8659
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 17
+	cml.ics.uci.edu: 1
+	intranet.ics.uci.edu: 123
+	vision.ics.uci.edu: 7
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 45
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 1
+
+Current Session:
+	Session Elapse Time 5248.96406317
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 230
+	Links Scraped: 9599
+
+
+Scrape History:
+	Total Elapse Time 67799.0086691
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 9599
+
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 18
+	futurehealth.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 442
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 113
+	graphmod.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	www.ics.uci.edu: 8803
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 18
+	cml.ics.uci.edu: 1
+	intranet.ics.uci.edu: 125
+	vision.ics.uci.edu: 7
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 46
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 1
+
+Current Session:
+	Session Elapse Time 5397.56265712
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 240
+	Links Scraped: 9889
+
+
+Scrape History:
+	Total Elapse Time 73196.5713263
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 9889
+
 ---------------------------------------
-Session Date 2018-05-02 14:23:38.382000
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 2
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 20
+	futurehealth.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 442
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 113
+	graphmod.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	www.ics.uci.edu: 9083
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 20
+	cml.ics.uci.edu: 1
+	intranet.ics.uci.edu: 129
+	vision.ics.uci.edu: 7
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 48
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 1
+
+Current Session:
+	Session Elapse Time 5573.22893214
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 250
+	Links Scraped: 10241
+
+
+Scrape History:
+	Total Elapse Time 78769.8002584
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 10241
+
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 3
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 20
+	futurehealth.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 478
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 131
+	graphmod.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	www.ics.uci.edu: 9377
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 20
+	cml.ics.uci.edu: 1
+	intranet.ics.uci.edu: 132
+	vision.ics.uci.edu: 7
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 48
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 1
+
+Current Session:
+	Session Elapse Time 6001.87263513
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 260
+	Links Scraped: 10421
+
+
+Scrape History:
+	Total Elapse Time 84771.6728935
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 10421
+
 ---------------------------------------
-Session Date 2018-05-02 15:51:28.214000
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 3
+	ugradforms.ics.uci.edu: 3
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 20
+	futurehealth.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 478
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 131
+	graphmod.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	www.ics.uci.edu: 9470
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 20
+	sprout.ics.uci.edu: 1
+	cml.ics.uci.edu: 52
+	intranet.ics.uci.edu: 133
+	vision.ics.uci.edu: 8
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 48
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 34
+
+Current Session:
+	Session Elapse Time 6129.51784015
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 270
+	Links Scraped: 10569
+
+
+Scrape History:
+	Total Elapse Time 90901.1907337
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 10569
+
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 65
+	ugradforms.ics.uci.edu: 3
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 20
+	futurehealth.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 478
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 149
+	graphmod.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	www.ics.uci.edu: 9517
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 20
+	sprout.ics.uci.edu: 1
+	cml.ics.uci.edu: 73
+	intranet.ics.uci.edu: 133
+	vision.ics.uci.edu: 8
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 48
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 34
+
+Current Session:
+	Session Elapse Time 6300.73524714
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 280
+	Links Scraped: 10797
+
+
+Scrape History:
+	Total Elapse Time 97201.9259808
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 10797
+
 ---------------------------------------
-Session Date 2018-05-02 17:51:15.193000
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 190
+	ugradforms.ics.uci.edu: 3
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 20
+	futurehealth.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 478
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 149
+	graphmod.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	www.ics.uci.edu: 9619
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 20
+	sprout.ics.uci.edu: 1
+	cml.ics.uci.edu: 73
+	intranet.ics.uci.edu: 134
+	vision.ics.uci.edu: 8
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 48
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 34
+
+Current Session:
+	Session Elapse Time 6435.45672107
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 290
+	Links Scraped: 10871
+
+
+Scrape History:
+	Total Elapse Time 103637.382702
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 10871
+
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 190
+	ugradforms.ics.uci.edu: 3
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 20
+	futurehealth.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 479
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 149
+	graphmod.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	www.ics.uci.edu: 9675
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 20
+	sprout.ics.uci.edu: 1
+	cml.ics.uci.edu: 73
+	intranet.ics.uci.edu: 134
+	vision.ics.uci.edu: 8
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 48
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 50
+	checkmate.ics.uci.edu: 1
+
+Current Session:
+	Session Elapse Time 6629.9144311
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 300
+	Links Scraped: 11296
+
+
+Scrape History:
+	Total Elapse Time 110267.297133
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 11296
+
 ---------------------------------------
-Session Date 2018-05-02 18:00:04.784000
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 190
+	ugradforms.ics.uci.edu: 3
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 4
+	netreg.ics.uci.edu: 20
+	duttgroup.ics.uci.edu: 2
+	futurehealth.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 479
+	sconce.ics.uci.edu: 10
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 149
+	radicle.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	sherlock.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	www.ics.uci.edu: 10077
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 20
+	sprout.ics.uci.edu: 1
+	asterix.ics.uci.edu: 1
+	cml.ics.uci.edu: 73
+	intranet.ics.uci.edu: 139
+	vision.ics.uci.edu: 8
+	emj.ics.uci.edu: 2
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 48
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 50
+	checkmate.ics.uci.edu: 1
+	hombao.ics.uci.edu: 1
+
+Current Session:
+	Session Elapse Time 7266.22592211
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 310
+	Links Scraped: 11534
+
+
+Scrape History:
+	Total Elapse Time 117533.523055
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 11534
+
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 221
+	ugradforms.ics.uci.edu: 3
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 7
+	netreg.ics.uci.edu: 21
+	duttgroup.ics.uci.edu: 2
+	futurehealth.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 479
+	sconce.ics.uci.edu: 10
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 167
+	radicle.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	sherlock.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	wics.ics.uci.edu: 1
+	www.ics.uci.edu: 10255
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 21
+	student-council.ics.uci.edu: 1
+	sprout.ics.uci.edu: 1
+	asterix.ics.uci.edu: 1
+	cml.ics.uci.edu: 73
+	intranet.ics.uci.edu: 141
+	vision.ics.uci.edu: 9
+	emj.ics.uci.edu: 2
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 49
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 50
+	checkmate.ics.uci.edu: 1
+	hombao.ics.uci.edu: 1
+
+Current Session:
+	Session Elapse Time 7492.06166196
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 320
+	Links Scraped: 11939
+
+
+Scrape History:
+	Total Elapse Time 125025.584717
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 0
+	Total Links Scraped: 11939
+
 ---------------------------------------
-Session Date 2018-05-02 18:03:06.878000
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 221
+	ugradforms.ics.uci.edu: 3
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 7
+	netreg.ics.uci.edu: 21
+	duttgroup.ics.uci.edu: 2
+	futurehealth.ics.uci.edu: 106
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 515
+	sconce.ics.uci.edu: 10
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 167
+	radicle.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	sherlock.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	wics.ics.uci.edu: 1
+	www.ics.uci.edu: 10515
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 21
+	student-council.ics.uci.edu: 1
+	sprout.ics.uci.edu: 1
+	asterix.ics.uci.edu: 1
+	cml.ics.uci.edu: 73
+	intranet.ics.uci.edu: 144
+	vision.ics.uci.edu: 9
+	emj.ics.uci.edu: 2
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 49
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 51
+	checkmate.ics.uci.edu: 1
+	hombao.ics.uci.edu: 1
+
+Current Session:
+	Session Elapse Time 9412.93528318
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Pages Scraped: 324
+	Links Scraped: 12140
+
+
+Scrape History:
+	Total Elapse Time 134438.52
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 324
+	Total Links Scraped: 12140
+
 ---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 252
+	ugradforms.ics.uci.edu: 3
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 7
+	netreg.ics.uci.edu: 21
+	duttgroup.ics.uci.edu: 2
+	futurehealth.ics.uci.edu: 106
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 515
+	sconce.ics.uci.edu: 10
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 167
+	radicle.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	sherlock.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	wics.ics.uci.edu: 1
+	www.ics.uci.edu: 10711
+	gats.ics.uci.edu: 1
+	webmail.ics.uci.edu: 21
+	student-council.ics.uci.edu: 1
+	sprout.ics.uci.edu: 1
+	asterix.ics.uci.edu: 1
+	cml.ics.uci.edu: 73
+	intranet.ics.uci.edu: 146
+	vision.ics.uci.edu: 10
+	emj.ics.uci.edu: 2
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 49
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 51
+	checkmate.ics.uci.edu: 1
+	hombao.ics.uci.edu: 1
+	
 ---------------------------------------
-Session Date 2018-05-02 19:04:05.392000
----------------------------------------
+Session Date 2018-05-04 15:35:04.304711
 ---------------------------------------
 
 Current Session:
-	Session Elapse Time 32.8849999905
-	Max Link Page: http://isg.ics.uci.edu/events.html
-	Max Links: 176
+	Session Elapse Time 123.187026024
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
 	Pages Scraped: 0
 	Links Scraped: 0
 
 
 Scrape History:
-	Total Elapse Time 32.8849999905
-	Max Link Page: http://isg.ics.uci.edu/events.html
-	Max Links: 176
-	Total Pages Scraped: 0
-	Total Links Scraped: 9494
-
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 19:05:58.949000
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 33.5440001488
-	Max Link Page: http://isg.ics.uci.edu/events.html
-	Max Links: 176
-	Pages Scraped: 0
-	Links Scraped: 0
-
-
-Scrape History:
-	Total Elapse Time 66.4290001393
-	Max Link Page: http://isg.ics.uci.edu/events.html
-	Max Links: 176
-	Total Pages Scraped: 0
-	Total Links Scraped: 9494
-
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 19:10:28.737000
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
-	Max Links: 91
-	Pages Scraped: 10
-	Links Scraped: 777
-
-
-Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
-	Max Links: 91
-	Total Pages Scraped: 0
-	Total Links Scraped: 777
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
-	Max Links: 91
-	Pages Scraped: 20
-	Links Scraped: 1482
-
-
-Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Withdrawal_Readmission.php
-	Max Links: 91
-	Total Pages Scraped: 0
-	Total Links Scraped: 1482
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/faculty/area/
-	Max Links: 93
-	Pages Scraped: 30
-	Links Scraped: 2318
-
-
-Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/faculty/area/
-	Max Links: 93
-	Total Pages Scraped: 0
-	Total Links Scraped: 2318
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
-	Max Links: 95
-	Pages Scraped: 40
-	Links Scraped: 3046
-
-
-Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
-	Max Links: 95
-	Total Pages Scraped: 0
-	Total Links Scraped: 3046
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
-	Max Links: 95
-	Pages Scraped: 50
-	Links Scraped: 3575
-
-
-Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
-	Max Links: 95
-	Total Pages Scraped: 0
-	Total Links Scraped: 3575
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
-	Max Links: 95
-	Pages Scraped: 60
-	Links Scraped: 4066
-
-
-Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/ugrad/policies/Laptop_ComputerUse
-	Max Links: 95
-	Total Pages Scraped: 0
-	Total Links Scraped: 4066
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 70
-	Links Scraped: 4918
-
-
-Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 4918
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 80
-	Links Scraped: 5730
-
-
-Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 5730
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 90
-	Links Scraped: 6136
-
-
-Scrape History:
-	Total Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 6136
-
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 19:54:24.392000
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 19:55:57.975000
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 19:56:15.975000
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 19:58:40.685000
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 10
-	Links Scraped: 326
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 6462
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 20
-	Links Scraped: 850
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 6986
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 30
-	Links Scraped: 1695
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 7831
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 40
-	Links Scraped: 2394
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 8530
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 50
-	Links Scraped: 3206
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 9342
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 60
-	Links Scraped: 3913
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 10049
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 70
-	Links Scraped: 4397
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 10533
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 80
-	Links Scraped: 4747
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 10883
-
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 20:40:29.493000
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 10
-	Links Scraped: 184
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 11067
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 20
-	Links Scraped: 975
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 11858
-
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 21:00:39.614000
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 21:02:16.598000
----------------------------------------
----------------------------------------
-Session Date 2018-05-02 21:08:09.346000
----------------------------------------
----------------------------------------
-Session Date 2018-05-03 00:04:50.720000
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 405.638999939
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 20
-	Links Scraped: 1281
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 13139
-
----------------------------------------
----------------------------------------
-Session Date 2018-05-03 00:25:50.378000
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 645.978000164
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 20
-	Links Scraped: 928
-
-
-Scrape History:
-	Total Elapse Time 0.0
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 0
-	Total Links Scraped: 14067
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 822.508000135
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 26
-	Links Scraped: 1393
-
-
-Scrape History:
-	Total Elapse Time 822.508000135
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 26
-	Total Links Scraped: 14532
-
----------------------------------------
----------------------------------------
-Session Date 2018-05-03 00:41:37.782000
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 403.480999947
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 20
-	Links Scraped: 1309
-
-
-Scrape History:
-	Total Elapse Time 822.508000135
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 26
-	Total Links Scraped: 15841
-
----------------------------------------
----------------------------------------
-Session Date 2018-05-03 00:54:15.803000
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 151.506999969
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 5
-	Links Scraped: 375
-
-
-Scrape History:
-	Total Elapse Time 974.015000104
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 31
-	Total Links Scraped: 16216
-
----------------------------------------
----------------------------------------
-Session Date 2018-05-03 01:08:23.888000
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 390.394999981
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 20
-	Links Scraped: 1307
-
-
-Scrape History:
-	Total Elapse Time 974.015000104
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 31
-	Total Links Scraped: 17523
-
----------------------------------------
----------------------------------------
-Session Date 2018-05-03 01:25:42.262000
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 391.856999874
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 20
-	Links Scraped: 1289
-
-
-Scrape History:
-	Total Elapse Time 974.015000104
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 31
-	Total Links Scraped: 18812
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 912.553999901
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 40
-	Links Scraped: 2485
-
-
-Scrape History:
-	Total Elapse Time 974.015000104
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 31
-	Total Links Scraped: 20008
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 1190.75899982
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 60
-	Links Scraped: 3392
-
-
-Scrape History:
-	Total Elapse Time 974.015000104
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 31
-	Total Links Scraped: 20915
-
----------------------------------------
----------------------------------------
-
-Current Session:
-	Session Elapse Time 1522.61099982
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Pages Scraped: 80
-	Links Scraped: 4336
-
-
-Scrape History:
-	Total Elapse Time 974.015000104
-	Max Link Page: http://www.ics.uci.edu/about/bren/bren_press.php
-	Max Links: 98
-	Total Pages Scraped: 31
-	Total Links Scraped: 21859
-
+	Total Elapse Time 134561.707026
+	Max Link Page: http://www.ics.uci.edu/~dechter/publications.html
+	Max Links: 267
+	Total Pages Scraped: 324
+	Total Links Scraped: 12140
+
+---------------------------------------
+
+Sub-Domain Link Counts:
+	mcs.ics.uci.edu: 252
+	ugradforms.ics.uci.edu: 3
+	archive.ics.uci.edu: 1
+	support.ics.uci.edu: 7
+	netreg.ics.uci.edu: 21
+	duttgroup.ics.uci.edu: 2
+	gats.ics.uci.edu: 1
+	sli.ics.uci.edu: 4
+	ngs.ics.uci.edu: 515
+	sconce.ics.uci.edu: 10
+	cradl.ics.uci.edu: 1
+	mhcid.ics.uci.edu: 167
+	radicle.ics.uci.edu: 1
+	graphmod.ics.uci.edu: 1
+	sherlock.ics.uci.edu: 1
+	www.graphics.ics.uci.edu: 1
+	wics.ics.uci.edu: 1
+	www.ics.uci.edu: 10739
+	futurehealth.ics.uci.edu: 106
+	webmail.ics.uci.edu: 21
+	student-council.ics.uci.edu: 1
+	sprout.ics.uci.edu: 1
+	asterix.ics.uci.edu: 1
+	cml.ics.uci.edu: 73
+	intranet.ics.uci.edu: 146
+	vision.ics.uci.edu: 11
+	emj.ics.uci.edu: 2
+	elms.ics.uci.edu: 4
+	malek.ics.uci.edu: 1
+	swiki.ics.uci.edu: 49
+	keys.ics.uci.edu: 1
+	honors.ics.uci.edu: 51
+	checkmate.ics.uci.edu: 1
+	hombao.ics.uci.edu: 1
+
+---------------------------------------
+---------------------------------------
+Session Date 2018-05-04 15:39:47.552606
 ---------------------------------------

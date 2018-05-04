@@ -21,7 +21,7 @@ from uuid import uuid4
 logger = logging.getLogger(__name__)
 LOG_HEADER = "[CRAWLER]"
 
-
+domain_dict = {}
 
 @Producer(JekahnHunsingkLink)
 @GetterSetter(OneJekahnHunsingkUnProcessedLink)
@@ -44,6 +44,8 @@ class CrawlerFrame(IApplication):
         self.read_history()
 
     def read_history(self):
+        global domain_dict
+
         try:
             with open('History.txt', 'r') as history:
                 self.total_links = int(history.readline())
@@ -55,7 +57,15 @@ class CrawlerFrame(IApplication):
                 self.total_pages_scraped = int(history.readline())
                 self.total_time = float(history.readline())
 
+                line = history.readline()
+
+                while line:
+                    key_value = line.split()
+                    domain_dict[key_value[0]] = int(key_value[1])
+                    line = history.readline()
+
                 history.close()
+
         except IOError as e:
             pass
 
@@ -101,7 +111,7 @@ class CrawlerFrame(IApplication):
                 self.link_dict[downloaded] = valid_link_count    # should this be keying downloaded.url?
                 self.session_links += valid_link_count
                 self.session_pages += 1                          # should we just add 1 each time?
-                if self.session_pages%10 == 0:
+                if self.session_pages % 10 == 0:
                     self.elapse_time = time() - self.starttime
                     self.total_time += self.elapse_time
                     self.write_analytics()
@@ -119,30 +129,34 @@ class CrawlerFrame(IApplication):
             except SystemExit:
                 os._exit(0)
 
-
     def shutdown(self):
-        self.total_pages_scraped += self.session_pages
-        self.elapse_time = time() - self.starttime
-        self.total_time += self.elapse_time
 
         self.write_analytics()
+
         print ("SHUTTING DOWN . . .")
         print ("Time time spent this session: {} seconds.".format(self.elapse_time))
         sys.exit(0)
 
     def write_analytics(self):
+        global domain_dict
+
+        self.total_pages_scraped += self.session_pages
+        self.elapse_time = time() - self.starttime
+        self.total_time += self.elapse_time
+
         history = open('History.txt', 'w')
         history.writelines("{}\n".format(self.total_links))
         history.writelines("{}\n".format(self.max_links[0]))
         history.writelines("{}\n".format(self.max_links[1].strip()))
         history.writelines("{}\n".format(self.total_pages_scraped))
-        history.writelines("{}".format(self.total_time))
+        history.writelines("{}\n".format(self.total_time))
+        for keys in domain_dict:
+            history.write("{}\t{}\n".format(keys, domain_dict[keys]))
         history.close()
 
         # we should be writing or link dictionary in here too
         # by subdomain for dict is that every link?
         logs = open('Analytics.txt', 'a')
-        logs.write('---------------------------------------\n')
         logs.write('\nCurrent Session:\n')
         logs.write('\tSession Elapse Time {}\n'.format(self.elapse_time))
         logs.write('\tMax Link Page: {}\n'.format(self.max_links[1].strip()))
@@ -158,13 +172,16 @@ class CrawlerFrame(IApplication):
         logs.write("\tTotal Links Scraped: {}\n\n".format(self.total_links))
         logs.write('---------------------------------------\n')
 
+        logs.write('\nSub-Domain Link Counts:\n')
+        for keys in domain_dict:
+            logs.write('\t{}: {}\n'.format(keys, domain_dict[keys]))
+        logs.write('\n---------------------------------------\n\n')
         logs.close()
 
 
 def extract_next_links(rawDataObj):
     output_links = []
-   #import lxml, change
-   # html.parse
+
     if rawDataObj.is_redirected:
         rawDataObj.url = rawDataObj.final_url
 
@@ -199,37 +216,46 @@ def is_valid(url):
     This is a great place to filter out crawler traps.
     '''
     parsed = urlparse(url)
+    global domain_dict
 
-    if parsed.scheme not in set(["http", "https"]):
+    if parsed.scheme not in {"http", "https"}:
         return False
     if parsed.fragment != '':   # if link has fragment id
+        return False
+    if parsed.query != '':      # if link has query
         return False
     if "calendar" in url:       # if link is calender
         return False
     if len(url) > 100:          # if link is really long
         return False
-    if "?" in url or "%" in url or "&" in url or "+" in url or "=" in url or "~" in url:
-        return False
-    if url == "http://mhcid.ics.uci.edu/admissions/costs-and-financial-aid":
+    if re.match("([?~%+=&])+", url):    # Matches possible dynamic characters
         return False
     # back to back directories
     try:
         r = requests.get(url)
         if r.status_code >= 400:   # double checking returns error code
             return False
-        if r.encoding.lower() != 'utf-8' and r.encoding.lower() != 'iso-8859-1':
+        if r.encoding.lower() != 'utf-8' and r.encoding.lower() != 'iso-8859-1': # Checks for encoding
             return False
     except Exception as e:
         return False
 
     try:
-        return ".ics.uci.edu" in parsed.hostname \
-            and not re.match(".*\.(css|js|bmp|gif|jpe?g|ico" + "|png|tiff?|mid|mp2|mp3|mp4" \
-                                + "|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf" \
-                                + "|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso|epub|dll|cnf|tgz|sha1" \
-                                + "|thmx|mso|arff|rtf|jar|csv" \
-                                + "|rm|smil|wmv|swf|wma|zip|rar|gz|pdf)$", parsed.path.lower())
+        valid = ".ics.uci.edu" in parsed.hostname \
+                and not re.match(".*\.(css|js|bmp|gif|jpe?g|ico" + "|png|tiff?|mid|mp2|mp3|mp4" \
+                                 + "|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf" \
+                                 + "|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso|epub|dll|cnf|tgz|sha1" \
+                                 + "|thmx|mso|arff|rtf|jar|csv" \
+                                 + "|rm|smil|wmv|swf|wma|zip|rar|gz|pdf)$", parsed.path.lower())
 
-    except TypeError:
+        key = parsed.netloc
+        if valid:
+            if key in domain_dict:
+                domain_dict[key] += 1
+            else:
+                domain_dict[key] = 1
+
+        return valid
+    except TypeError as e:
         print ("TypeError for ", parsed)
         return False
