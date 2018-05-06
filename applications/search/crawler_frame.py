@@ -1,26 +1,22 @@
+import datetime
 import logging
+import os
+import re
+import sys
+from time import time
+from urlparse import urljoin
+from urlparse import urlparse
+
+import BeautifulSoup as BS
+import requests
 from datamodel.search.JekahnHunsingk_datamodel import JekahnHunsingkLink, OneJekahnHunsingkUnProcessedLink
 from spacetime.client.IApplication import IApplication
-from spacetime.client.declarations import Producer, GetterSetter, Getter
-import BeautifulSoup as BS
-from urlparse import urljoin
-import sys
-import datetime
-import requests
-import urllib3
-import lxml
-from lxml import html,etree
-import re, os
-from time import time
-from uuid import uuid4
-import urllib2
-
-from urlparse import urlparse, parse_qs
-from uuid import uuid4
+from spacetime.client.declarations import Producer, GetterSetter
 
 logger = logging.getLogger(__name__)
 LOG_HEADER = "[CRAWLER]"
 
+# Global dictionary to hold valid link counts
 domain_dict = {}
 
 @Producer(JekahnHunsingkLink)
@@ -29,10 +25,10 @@ class CrawlerFrame(IApplication):
     app_id = "JekahnHunsingk"
 
     def __init__(self, frame):
+        # Create variables for metrics
         self.app_id = "JekahnHunsingk"
         self.frame = frame
         self.starttime = time()
-        self.link_dict = {}
         self.max_links = (0, 'url')
         self.elapse_time = 0
         self.total_links = 0
@@ -43,9 +39,11 @@ class CrawlerFrame(IApplication):
 
         self.read_history()
 
+    # Read history to keep running totals
     def read_history(self):
         global domain_dict
 
+        # Reading history and populate totals
         try:
             with open('History.txt', 'r') as history:
                 self.total_links = int(history.readline())
@@ -70,10 +68,11 @@ class CrawlerFrame(IApplication):
             pass
 
     def initialize(self):
+        # Write date/time header when crawler starts
         logs = open('Analytics.txt', 'a')
         logs.write('---------------------------------------\n')
         logs.write('Session Date {}\n'.format(datetime.datetime.now()))
-        logs.write('---------------------------------------\n')
+        logs.write('---------------------------------------\n\n')
         logs.close()
 
         links = self.frame.get_new(OneJekahnHunsingkUnProcessedLink)
@@ -97,27 +96,36 @@ class CrawlerFrame(IApplication):
                 downloaded = link.download()
                 links = extract_next_links(downloaded)
 
+                # Count valids per each url
                 valid_link_count = 0
                 for l in links:
                     if is_valid(l):
                         valid_link_count += 1
                         self.frame.add(JekahnHunsingkLink(l))
 
+                # Sum total valid links
                 self.total_links += valid_link_count
 
+                # Check for max links and url
                 if valid_link_count > self.max_links[0]:
-                    self.max_links = (valid_link_count, downloaded.url)  # should we check for final_url?
+                    self.max_links = (valid_link_count, downloaded.url)
 
-                self.link_dict[downloaded] = valid_link_count    # should this be keying downloaded.url?
+                # Calculate metrics
                 self.session_links += valid_link_count
-                self.session_pages += 1                          # should we just add 1 each time?
+                self.session_pages += 1
+
+                # Write analytics every 10 pages scraped
                 if self.session_pages % 10 == 0:
                     self.elapse_time = time() - self.starttime
                     self.total_time += self.elapse_time
                     self.write_analytics()
+
+                # Stop crawler after scraping 3000 pages
                 if self.session_pages == 3000 or self.total_pages_scraped == 3000:
                     self.elapse_time = time() - self.starttime
                     self.shutdown()
+
+        # Shutdown on keyboard interrupt
         except KeyboardInterrupt:
             try:
                 self.shutdown()
@@ -129,6 +137,7 @@ class CrawlerFrame(IApplication):
             except SystemExit:
                 os._exit(0)
 
+    # Shutdown crawler and write analytics
     def shutdown(self):
 
         self.write_analytics()
@@ -137,13 +146,16 @@ class CrawlerFrame(IApplication):
         print ("Time time spent this session: {} seconds.".format(self.elapse_time))
         sys.exit(0)
 
+    # Write analytics file and history logs
     def write_analytics(self):
         global domain_dict
 
+        # Add metrics of current session to total
         self.total_pages_scraped += self.session_pages
         self.elapse_time = time() - self.starttime
         self.total_time += self.elapse_time
 
+        # Rewrite history file with updated metrics
         history = open('History.txt', 'w')
         history.writelines("{}\n".format(self.total_links))
         history.writelines("{}\n".format(self.max_links[0]))
@@ -154,10 +166,10 @@ class CrawlerFrame(IApplication):
             history.write("{}\t{}\n".format(keys, domain_dict[keys]))
         history.close()
 
-        # we should be writing or link dictionary in here too
-        # by subdomain for dict is that every link?
+        # Append new metrics to analytics file
+        # Current sessions and total crawl
         logs = open('Analytics.txt', 'a')
-        logs.write('\nCurrent Session:\n')
+        logs.write('Current Session:\n')
         logs.write('\tSession Elapse Time {}\n'.format(self.elapse_time))
         logs.write('\tMax Link Page: {}\n'.format(self.max_links[1].strip()))
         logs.write('\tMax Links: {}\n'.format(self.max_links[0]))
@@ -172,6 +184,7 @@ class CrawlerFrame(IApplication):
         logs.write("\tTotal Links Scraped: {}\n\n".format(self.total_links))
         logs.write('---------------------------------------\n')
 
+        # Output domain link counts
         logs.write('\nSub-Domain Link Counts:\n')
         for keys in domain_dict:
             logs.write('\t{}: {}\n'.format(keys, domain_dict[keys]))
@@ -182,64 +195,69 @@ class CrawlerFrame(IApplication):
 def extract_next_links(rawDataObj):
     output_links = []
 
+    # check for redirected link and reset url
     if rawDataObj.is_redirected:
         rawDataObj.url = rawDataObj.final_url
 
+    # Check if page is "OK" before trying to scrape links
+    # Create Beautiful Soup object for HTML parsing
     if rawDataObj.http_code == 200:
         soup = BS.BeautifulSoup(rawDataObj.content)
 
+        # Find all ahref tags
+        # Make sure links are ASCII encoded
+        # Add valid link to list
         for links in soup.findAll('a'):
             output_links.append(urljoin(rawDataObj.url, links.get('href')).encode('ascii'))
     else:
+        # Return empty list if url is not "OK"
         print("ERROR! Page returned a {} code".format(rawDataObj.http_code))
         print(rawDataObj.error_message)
         return []
 
-    '''
-    rawDataObj is an object of type UrlResponse declared at L20-30
-    datamodel/search/server_datamodel.py
-    the return of this function should be a list of urls in their absolute form
-    Validation of link via is_valid function is done later (see line 42).
-    It is not required to remove duplicates that have already been downloaded.
-    The frontier takes care of that.
-
-    Suggested library: lxml
-    '''
     return output_links
 
 
 def is_valid(url):
-    '''
-    Function returns True or False based on whether the url has to be
-    downloaded or not.
-    Robot rules and duplication rules are checked separately.
-    This is a great place to filter out crawler traps.
-    '''
+    # Parsed link using urllib3 library
     parsed = urlparse(url)
+
+    # Reference to global for url domain list
     global domain_dict
 
+    # Check for HTTP or HTTPS scheme
     if parsed.scheme not in {"http", "https"}:
         return False
-    if parsed.fragment != '':   # if link has fragment id
+
+    # Dynamic link checks and traps
+    # Remove links with fragments
+    if parsed.fragment != '':
         return False
-    if parsed.query != '':      # if link has query
+
+    # Remove links with queries
+    if parsed.query != '':
         return False
-    if "calendar" in url:       # if link is calender
+
+    # Remove links that have dynamic calendars
+    if "calendar" in url:
         return False
-    if len(url) > 100:          # if link is really long
+
+    # Remove links that are over length
+    if len(url) > 100:
         return False
-    if re.match("([?~%+=&])+", url):    # Matches possible dynamic characters
-        return False
-    # back to back directories
+
+    # Double check scraped link for valid codes
+    # Check links for correct encoding
     try:
         r = requests.get(url)
-        if r.status_code >= 400:   # double checking returns error code
+        if r.status_code >= 400:
             return False
-        if r.encoding.lower() != 'utf-8' and r.encoding.lower() != 'iso-8859-1': # Checks for encoding
+        if r.encoding.lower() != 'utf-8' and r.encoding.lower() != 'iso-8859-1':
             return False
     except Exception as e:
         return False
 
+    # Check file extensions and host name
     try:
         valid = ".ics.uci.edu" in parsed.hostname \
                 and not re.match(".*\.(css|js|bmp|gif|jpe?g|ico" + "|png|tiff?|mid|mp2|mp3|mp4" \
@@ -248,6 +266,8 @@ def is_valid(url):
                                  + "|thmx|mso|arff|rtf|jar|csv" \
                                  + "|rm|smil|wmv|swf|wma|zip|rar|gz|pdf)$", parsed.path.lower())
 
+        # Creating dictionary of subdomain links
+        # Increment count or create key
         key = parsed.netloc
         if valid:
             if key in domain_dict:
