@@ -1,5 +1,6 @@
 import sys
 import operator
+import string
 import BeautifulSoup as BS
 import json
 
@@ -23,7 +24,6 @@ class InvertedDictionary:
                 else:  # else it put in dict and set value i.e. occurence to 1
                     self.invDict[word.lower()] = 1
                 word = ''  # reset word to build again
-        return self.invDict
 
     def sort_tokens(self):
         return sorted(self.invDict.items(), key=lambda x: (-x[1],x[0]))
@@ -35,35 +35,47 @@ class InvertedDictionary:
 
     def read_file(self, id):
         name = "WEBPAGES_RAW/" + id
+        clear = ''
+
         try:
             f = open(name, "r")
         except Exception as e:
             print ("Error! {}".format(e))
             return
         contents = f.read()
-        #print (contents)
         soup = BS.BeautifulSoup(contents)
-        for string in soup.stripped_strings:
-            print(repr(string))
-        soup.str
-        #print (soup)
-        #print (soup)
-        text = soup.getText()
-        #print (text)
-        f.close()
-        return text
 
-    # read_file gets the contents of the file
-    def read_json(self):
-        with open('WEBPAGES_RAW/bookkeeping.json') as f:
-            self.urls = json.load(f)
+        for tags in soup.findAll(['p', 'h1', 'h2', 'h3', 'title']):
+            for a in tags(['a', 'img', 'script', 'style']):
+                a.decompose()
+            clear += tags.getText() + '\n'
+
+        f.close()
+        return clear
+
+    def create(self):
         i = 0
+        page_contents = ''
+
+        self.read_json()
+
         for keys in self.urls:
             print(keys)
             i += 1
-            if i == 5:
-                self.read_file(keys)
+            page_contents = self.read_file(keys)
+            self.tokenize_and_count(page_contents)
+            if i == 6:
                 break
+
+
+    # read_file gets the contents of the file
+    def read_json(self):
+
+        with open('WEBPAGES_RAW/bookkeeping.json') as f:
+            self.urls = json.load(f)
+
+        self.docCount = len(self.urls)
+
 
 
 test = InvertedDictionary()
