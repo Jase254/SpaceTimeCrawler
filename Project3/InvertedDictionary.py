@@ -5,6 +5,7 @@ import re
 import io
 from BeautifulSoup import BeautifulSoup, Comment
 from collections import OrderedDict
+from pymongo import MongoClient
 
 import json
 
@@ -16,6 +17,9 @@ class InvertedDictionary:
         self.tokCount = 0
         self.urls = {}
         self.sorted_dict = OrderedDict()
+        client = MongoClient('localhost:27017')
+        self.db = client.Corpus
+        # self.intialize_mongo()
 
     def tokenize_and_count(self, contents):
         word = ''  # set up word for building
@@ -78,16 +82,28 @@ class InvertedDictionary:
                 page_contents = self.read_file(docs)
                 tokens = self.tokenize_and_count(page_contents)
 
-
                 for keys in tokens:
                     if keys in self.invDict:
                         self.invDict[keys].append(tuple([str(docs), tokens[keys]]))
+                        self.db.Corpus.update_one(
+                            {'token': keys},
+                            {
+                                '$set': {
+                                    'posting': self.invDict[keys]
+                                }
+                            }
+                        )
                     else:
                         self.invDict[keys] = [tuple([str(docs), tokens[keys]])]
+                        self.db.Corpus.insert_one(
+                            {'token': keys,
+                             'posting': self.invDict[keys]
+                             }
+                        )
                 if i == 1000:
                     break
             except Exception as e:
-                print('you fucked up!')
+                print('you fucked up! {}'.format(e))
                 continue
 
         for key in sorted(self.invDict):
