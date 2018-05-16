@@ -6,6 +6,8 @@ import io
 from BeautifulSoup import BeautifulSoup, Comment
 from collections import OrderedDict
 from pymongo import MongoClient
+from time import time
+import math
 
 import json
 
@@ -24,15 +26,29 @@ class InvertedDictionary:
     def tokenize_and_count(self, contents):
         word = ''  # set up word for building
         tokens = {}
+        index = 0
 
-        for i in contents:
+        for c, i in enumerate(contents):
+            if word == '':
+                index = c
             if i.isalnum():  # if letter is alpha-numeric, concatenate to end of word
                 word += i
             elif word != '':
-                if word.lower() in tokens:  # if word is in dict, add one to value for occurences
-                    tokens[word.lower()] += 1
+                word = word.lower()
+                if word in tokens:  # if word is in dict, add one to value for occurences
+                    occurences = tokens[word][0]
+                    occurences += 1
+
+                    indices = tokens[word][1]
+                    indices.append(index)
+
+                    posting = tuple([occurences, indices])
+
+                    tokens[word] = posting
+
                 else:  # else it put in dict and set value i.e. occurence to 1
-                    tokens[str(word.lower())] = 1
+                    tokens[str(word)] = tuple([1, [index]])
+
                 word = ''  # reset word to build again
         return tokens
 
@@ -42,6 +58,12 @@ class InvertedDictionary:
     def print_tokens(self):
         for i in self.invDict:
             print ('%s - %i' % (i[0], i[1]))
+
+    def calc_tf(self, term_frequency):
+        tf = 1 + math.log(term_frequency, 10)
+        tf = float("{0:.2f}".format(tf))
+        return tf
+
 
     def read_file(self, id):
         name = "WEBPAGES_RAW/" + id
@@ -69,6 +91,18 @@ class InvertedDictionary:
         f.close()
         return clear
 
+    def calc_tfidf(self):
+
+        for keys in self.invDict:
+            df = len(self.invDict[keys])
+            idf = math.log((self.docCount/df), 10)
+
+            for i, docs in enumerate(self.invDict[keys]):
+                tf_idf = idf * docs[1][0]
+                tf_idf = float("{0:.3f}".format(tf_idf))
+                posting = tuple([docs[0], tuple([tf_idf, docs[1][1]])])
+                self.invDict[keys][i] = posting
+
     def create(self):
 
         i = 0
@@ -83,31 +117,25 @@ class InvertedDictionary:
                 tokens = self.tokenize_and_count(page_contents)
 
                 for keys in tokens:
+                    tf = self.calc_tf(tokens[keys][0])
+                    posting = tuple([tf, tokens[keys][1]])
+
+                    tokens[keys] = posting
+
                     if keys in self.invDict:
                         self.invDict[keys].append(tuple([str(docs), tokens[keys]]))
-                        self.db.Corpus.update_one(
-                            {'token': keys},
-                            {
-                                '$set': {
-                                    'posting': self.invDict[keys]
-                                }
-                            }
-                        )
                     else:
                         self.invDict[keys] = [tuple([str(docs), tokens[keys]])]
-                        self.db.Corpus.insert_one(
-                            {'token': keys,
-                             'posting': self.invDict[keys]
-                             }
-                        )
-                if i == 1000:
-                    break
+                if i % 1000 == 0:
+                    print("# docs {}".format(i))
             except Exception as e:
                 print('you fucked up! {}'.format(e))
                 continue
 
-        for key in sorted(self.invDict):
-            print "%s: %s" % (key, self.invDict[key])
+        self.tokCount = len(self.invDict)
+        self.calc_tfidf()
+
+        self.db.Corpus.insert(self.invDict)
 
 
     # read_file gets the contents of the file
@@ -119,6 +147,9 @@ class InvertedDictionary:
         self.docCount = len(self.urls)
 
 
-
+start_time = time()
 test = InvertedDictionary()
 test.create()
+end_time = time() - start_time
+
+print("elapse time: {}s".format(end_time))
