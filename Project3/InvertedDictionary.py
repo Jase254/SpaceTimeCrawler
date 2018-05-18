@@ -1,5 +1,3 @@
-import sys
-import operator
 import string
 import re
 import io
@@ -22,7 +20,6 @@ class InvertedDictionary:
         client = MongoClient('localhost:27017')
         self.db = client.Corpus
         self.db2 = client.Urls
-        # self.intialize_mongo()
 
     def tokenize_and_count(self, contents):
         word = ''  # set up word for building
@@ -141,15 +138,15 @@ class InvertedDictionary:
             for items, posting in self.invDict.iteritems():
 
                 entry = {'token': items,
-                         'posting:': []}
+                         'posting': []}
 
                 for docs in posting:
                     posting_list = {'docId': docs[0],
                                     'metrics':
-                                        {'ft-idf': docs[1][0],
+                                        {'tf-idf': docs[1][0],
                                          'indices': docs[1][1]}}
 
-                    entry['posting:'].append(posting_list)
+                    entry['posting'].append(posting_list)
                 print entry
                 self.db.Corpus.insert(entry)
                 if i % 1000 == 0:
@@ -164,21 +161,45 @@ class InvertedDictionary:
         with open('WEBPAGES_RAW/bookkeeping.json') as f:
             self.urls = json.load(f)
 
+        for key in self.urls:
+            entry = {'docId': key,
+                     'url': self.urls[key]}
+            self.db2.Urls.insert(entry)
+
         self.docCount = len(self.urls)
         self.db2.Urls.insert(self.urls)
 
-    # def analytics(self):
+    def analytics(self):
+        self.tokCount = self.db.Corpus.count()
+        print("Unique Token Count: {}".format(self.tokCount))
+
+        self.docCount = self.db2.Urls.count()
+        print("Document Count: {}".format(self.docCount))
 
     def search(self, query):
-        result = (self.db.Corpus.find( {'token': query}, {"posting.docId": 1}))
-        print(result.next())
+        query = string.lower(query)
+        urls = []
+        i = 0
+        result = self.db.Corpus.find({"token": query}, {"posting:.docId": 1, "_id": 0}).limit(10)
+        posting = result.next()
 
+        for docs in posting[unicode('posting:')]:
+            doc_ids = (str(docs[unicode('docId')]))
+            entry = self.db2.Urls.find_one({'docId': doc_ids}, {'docId': 0, '_id': 0})
+            urls.append(str(entry[unicode('url')]))
+            i += 1
+            if i == 10:
+                break
+
+        for links in urls:
+            print(links)
 
 
 start_time = time()
 test = InvertedDictionary()
-
-test.search('woods')
+test.search('Informatics')
+test.analytics()
 end_time = time() - start_time
 
 print("elapse time: {}s".format(end_time))
+
