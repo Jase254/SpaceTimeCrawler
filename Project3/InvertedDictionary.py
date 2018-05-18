@@ -21,6 +21,7 @@ class InvertedDictionary:
         self.sorted_dict = OrderedDict()
         client = MongoClient('localhost:27017')
         self.db = client.Corpus
+        self.db2 = client.Urls
         # self.intialize_mongo()
 
     def tokenize_and_count(self, contents):
@@ -128,6 +129,7 @@ class InvertedDictionary:
                         self.invDict[keys] = [tuple([str(docs), tokens[keys]])]
                 if i % 1000 == 0:
                     print("# docs {}".format(i))
+
             except Exception as e:
                 print('you fucked up! {}'.format(e))
                 continue
@@ -135,8 +137,26 @@ class InvertedDictionary:
         self.tokCount = len(self.invDict)
         self.calc_tfidf()
 
-        self.db.Corpus.insert(self.invDict)
+        try:
+            for items, posting in self.invDict.iteritems():
 
+                entry = {'token': items,
+                         'posting:': []}
+
+                for docs in posting:
+                    posting_list = {'docId': docs[0],
+                                    'metrics':
+                                        {'ft-idf': docs[1][0],
+                                         'indices': docs[1][1]}}
+
+                    entry['posting:'].append(posting_list)
+                print entry
+                self.db.Corpus.insert(entry)
+                if i % 1000 == 0:
+                    print('{} Items added to Corpus'.format(i))
+        except Exception as e:
+            print('mongo fucked up!')
+            print('{}'.format(e))
 
     # read_file gets the contents of the file
     def read_json(self):
@@ -145,11 +165,20 @@ class InvertedDictionary:
             self.urls = json.load(f)
 
         self.docCount = len(self.urls)
+        self.db2.Urls.insert(self.urls)
+
+    # def analytics(self):
+
+    def search(self, query):
+        result = (self.db.Corpus.find( {'token': query}, {"posting.docId": 1}))
+        print(result.next())
+
 
 
 start_time = time()
 test = InvertedDictionary()
-test.create()
+
+test.search('woods')
 end_time = time() - start_time
 
 print("elapse time: {}s".format(end_time))
