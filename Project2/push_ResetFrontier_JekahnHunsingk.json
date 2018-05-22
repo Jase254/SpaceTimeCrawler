@@ -1,0 +1,19 @@
+{
+    "gc": {}
+}{
+    "gc": {
+        "datamodel.search.JekahnHunsingk_datamodel.JekahnHunsingkLink": {
+            "mhcid.ics.uci.edu/admissions/costs-and-financial-aid": {
+                "types": {
+                    "datamodel.search.JekahnHunsingk_datamodel.JekahnHunsingkLink": 0
+                },
+                "version": [
+                    1525321839.229,
+                    1525321839.229
+                ]
+            }
+        }
+    }
+}{
+    "gc": {}
+}
