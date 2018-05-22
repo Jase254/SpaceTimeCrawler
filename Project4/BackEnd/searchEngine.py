@@ -195,9 +195,8 @@ class InvertedDictionary:
             print(links)
 
 
-start_time = time()
-test = InvertedDictionary()
-test.create()
-end_time = time() - start_time
+# start_time = time()
+# test = InvertedDictionary()
+# end_time = time() - start_time
 
-print("elapse time: {}s".format(end_time))
+# print("elapse time: {}s".format(end_time))

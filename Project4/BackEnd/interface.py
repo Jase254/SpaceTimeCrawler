@@ -16,5 +16,8 @@ def initialize():
 @app.route('/search/<string:search_term>', methods=['POST', 'GET'])
 @cross_origin()
 def search(search_term):
-    return 'search team: {}'.format(search_term)
+    return 'search term: {}'.format(search_term)
 
+
+if __name__ == '__main__':
+    app.run()
