@@ -4,6 +4,8 @@ import io
 from BeautifulSoup import BeautifulSoup, Comment
 from collections import OrderedDict
 from pymongo import MongoClient
+import nltk
+from nltk.corpus import stopwords
 from time import time
 import math
 
@@ -13,13 +15,36 @@ class InvertedDictionary:
 
     def __init__(self):
         self.invDict = {}
-        self.docCount = 0
         self.tokCount = 0
         self.urls = {}
         self.sorted_dict = OrderedDict()
         client = MongoClient('localhost:27017')
         self.db = client.Corpus
         self.db2 = client.Urls
+        self.docCount = 0
+        self.stopWords = set(stopwords.words('english'))
+
+    def tokenize(self, contents):
+        word = ''  # set up word for building
+        tokens = {}
+        contents += " "
+
+        for c, i in enumerate(contents):
+            if i.isalnum():  # if letter is alpha-numeric, concatenate to end of word
+                word += i
+            elif word != '':
+                word = word.lower()
+                if (word in tokens) and (word not in self.stopWords):  # if word is in dict, add one to value for occurences
+                    occurences = tokens[word]
+                    occurences += 1
+                    tokens[word] = occurences
+
+                elif word not in self.stopWords:  # else it put in dict and set value i.e. occurence to 1
+                    tokens[str(word)] = 1
+
+                word = ''  # reset word to build again
+
+        return tokens
 
     def tokenize_and_count(self, contents):
         word = ''  # set up word for building
@@ -155,6 +180,7 @@ class InvertedDictionary:
             print('mongo fucked up!')
             print('{}'.format(e))
 
+
     # read_file gets the contents of the file
     def read_json(self):
 
@@ -169,6 +195,10 @@ class InvertedDictionary:
         self.docCount = len(self.urls)
         self.db2.Urls.insert(self.urls)
 
+    def get_docCount (self):
+        self.docCount = self.db2.Urls.count()
+        return self.docCount
+
     def analytics(self):
         self.tokCount = self.db.Corpus.count()
         print("Unique Token Count: {}".format(self.tokCount))
@@ -180,10 +210,10 @@ class InvertedDictionary:
         query = string.lower(query)
         urls = []
         i = 0
-        result = self.db.Corpus.find({"token": query}, {"posting:.docId": 1, "_id": 0}).limit(10)
+        result = self.db.Corpus.find({"token": query}, {"posting.docId": 1, "_id": 0}).limit(10)
         posting = result.next()
 
-        for docs in posting[unicode('posting:')]:
+        for docs in posting[unicode('posting')]:
             doc_ids = (str(docs[unicode('docId')]))
             entry = self.db2.Urls.find_one({'docId': doc_ids}, {'docId': 0, '_id': 0})
             urls.append(str(entry[unicode('url')]))
@@ -194,10 +224,63 @@ class InvertedDictionary:
         for links in urls:
             print(links)
 
+    def search_multi(self, query):
+        # if we're doing it right, add only do calcs for docs with all words in query
+        freq_dict = self.tokenize(query)
+        query_tfidf = {}
+        query_df = len(freq_dict)
+        scores = {} # maps docId to cosine scores
+        scores2 = {}
+        # now loop through calc tf-idf for each term in query
+        for term in freq_dict:
+            tf = freq_dict[term]
+            result = self.db.Corpus.find({"token": term}, {"posting.docId": 1, "_id": 0})
+            query_df = len(result.next()['posting'])
+            query_idf = math.log((self.get_docCount() / query_df), 10)
+            tf_idf = query_idf * (1 + math.log(tf, 10))
+            tf_idf = float("{0:.3f}".format(tf_idf))
+            query_tfidf[term] = tf_idf
+        print (query_tfidf)
+
+        # loop through
+        for token in query_tfidf:
+            result = self.db.Corpus.find({"token": token}, {"posting.docId":1, "posting.metrics.tf-idf": 1, "_id": 0})
+            result = result.next()['posting']
+            for doc in result:
+                doc_tfidf = doc['metrics']['tf-idf']
+                docId = doc['docId']
+                score = query_tfidf[token] * doc_tfidf
+                if docId in scores:
+                    scores[docId] += float("{0:.3f}".format(score))
+                else:
+                    scores[docId] = float("{0:.3f}".format(score))
+
+        length = 0
+        for i in scores:
+            length += scores[i]**2
+        length = math.sqrt(length)
+        check = 0
+        for i in scores:
+            scores[i] = scores[i]/length
+            print ("{} doc: {}".format(i, scores[i]))
+            check += scores[i]
+        import operator
+        sorted_x = sorted(scores.items(), key=operator.itemgetter(1))
+        print (sorted_x)
+
+        print (check)
+
+
+        # for tf-idf, get posting for each query term, get intersecion of docIds, then do if-idf on that
+
+
+
+
+
 
 start_time = time()
 test = InvertedDictionary()
-test.create()
+test.search_multi("sergio is boring really boring")
 end_time = time() - start_time
 
 print("elapse time: {}s".format(end_time))
