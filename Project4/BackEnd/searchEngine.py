@@ -9,6 +9,7 @@ from nltk.corpus import stopwords
 from time import time
 import math
 import operator
+import numpy as np
 
 import json
 
@@ -130,8 +131,6 @@ class InvertedDictionary:
     def create(self):
 
         i = 0
-        page_contents = ''
-
         self.read_json()
 
         for docs in self.urls:
@@ -182,7 +181,6 @@ class InvertedDictionary:
             print('{}'.format(e))
 
 
-    # read_file gets the contents of the file
     def read_json(self):
 
         with open('WEBPAGES_RAW/bookkeeping.json') as f:
@@ -207,25 +205,23 @@ class InvertedDictionary:
         self.docCount = self.db2.Urls.count()
         print("Document Count: {}".format(self.docCount))
 
-    def search(self, query):
-        query = string.lower(query)
-        urls = []
-        i = 0
-        result = self.db.Corpus.find({"token": query}, {"posting.docId": 1, "_id": 0}).limit(10)
-        posting = result.next()
-
-        for docs in posting[unicode('posting')]:
-            doc_ids = (str(docs[unicode('docId')]))
-            entry = self.db2.Urls.find_one({'docId': doc_ids}, {'docId': 0, '_id': 0})
-            urls.append(str(entry[unicode('url')]))
-            i += 1
-            if i == 10:
-                break
-
-        for links in urls:
-            print(links)
-
-   # def calc_similarity(self, query):
+    # def search(self, query):
+    #     query = string.lower(query)
+    #     urls = []
+    #     i = 0
+    #     result = self.db.Corpus.find({"token": query}, {"posting.docId": 1, "_id": 0}).limit(10)
+    #     posting = result.next()
+    #
+    #     for docs in posting[unicode('posting')]:
+    #         doc_ids = (str(docs[unicode('docId')]))
+    #         entry = self.db2.Urls.find_one({'docId': doc_ids}, {'docId': 0, '_id': 0})
+    #         urls.append(str(entry[unicode('url')]))
+    #         i += 1
+    #         if i == 10:
+    #             break
+    #
+    #     for links in urls:
+    #         print(links)
 
     def merge_postings(self, query_dict):
         merged = set()
@@ -238,7 +234,6 @@ class InvertedDictionary:
             for docId in result.next()['posting']:
                 posting.add(str(docId['docId']))
             postings[token] = posting
-            #print (posting)
             lengths.append(len(posting))
             if len(merged) == 0:
                 merged = posting
@@ -249,7 +244,6 @@ class InvertedDictionary:
 
     def calc_query_tfidf(self, query_dict):
         query_tfidf = {}
-        # now loop through calc tf-idf for each term in query
         for term in query_dict:
             tf = query_dict[term]
             result = self.db.Corpus.find({"token": term}, {"posting.docId": 1, "_id": 0})
@@ -305,28 +299,123 @@ class InvertedDictionary:
             scores[doc] = scores[doc]/doc_lengths[doc]
         return scores
 
-    def search_cosine(self, query):
-        # if we're doing it right, add only do calcs for docs with all words in query
-        query_dict = self.tokenize(query)
+    def strip_scores(self, scores):
+        final_docs = []
+        for i in range(10):
+            final_docs.append(str(scores[i][0]))
+        return final_docs
 
+    def search_cosine(self, query):
+        query_dict = self.tokenize(query)
         query_tfidf = self.calc_query_tfidf(query_dict)
         scores, doc_lengths = self.calc_scoresAndLengths(query_tfidf)
         doc_lengths = self.finish_lengths(doc_lengths)
         scores = self.finish_scores(scores, doc_lengths)
 
         sorted_scores = sorted(scores.items(), key=operator.itemgetter(1), reverse=True)
-        return sorted_scores
+        final_docs = self.strip_scores(sorted_scores)
+        return final_docs
 
     def search_tfidf(self, query):
         query_dict = self.tokenize(query)
         union_scores = self.union_postings(query_dict)
+
         sorted_scores = sorted(union_scores.items(), key=operator.itemgetter(1), reverse=True)
-        print (sorted_scores)
+        final_docs = self.strip_scores(sorted_scores)
+        return final_docs, query_dict
 
-start_time = time()
-test = InvertedDictionary()
-test.search_tfidf("artificial intelligence")
-end_time = time() - start_time
+    def get_urls(self, docIds):
+        top_urls = {}
+        for doc in docIds:
+            result = self.db2.Urls.find({"docId": doc}, {"url": 1, "_id": 0})
+            url = result.next()
+            top_urls[doc] = url
+        return top_urls
+
+    def get_titleandContents(self, docId):
+        try:
+            file_name = "../../Project3/WEBPAGES_RAW/" + docId
+            f = io.open(file_name, "r", encoding='utf-8')
+        except Exception as e:
+            print ("Error! {}".format(e))
+            return
+        contents = f.read()
+        soup = BeautifulSoup(contents)
+        clear = ''
+
+        for tags in soup.findAll(['p', 'h1', 'h2', 'h3', 'title']):
+
+            for a in tags(['a', 'img', 'script', 'style']):
+                a.decompose()
+
+            for element in tags(text=lambda text: isinstance(text, Comment)):
+                element.extract()
+
+            clear += re.sub('[^0-9a-zA-Z]+', ' ', tags.getText(' ')) + '\n'
+
+        title = soup.title.string
+        f.close()
+        return title, clear
+
+    def get_indices(self, top_docs, query_dict):
+        doc_indices = {}
+        for token in query_dict:
+            result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics.indices": 1, "_id": 0})
+            posting = result.next()['posting']
+            for doc in posting:
+                indices = doc['metrics']['indices']
+                docId = doc['docId']
+                if docId in top_docs and docId not in doc_indices:
+                    doc_indices[docId] = indices
+                elif docId in top_docs and docId in doc_indices:
+                    old_list = doc_indices[docId]
+                    doc_indices[docId] = old_list + indices
+        return doc_indices
+
+    def get_snippet(self, contents, indices):
+        # window of just first occurence in doc, window of 20 before and 30 after
+        indices.sort()
+        first_index = indices[0]
+        if first_index - 20 < 0:
+            beg = 0
+        else:
+            beg = contents.find(' ', first_index-20, first_index-10) + 1
+        if first_index + 30 >= len(contents):
+            end = len(contents)
+        else:
+            end = contents.find(' ', first_index+20, first_index+30)
+        snippet = contents[beg:end]
+        return snippet
 
 
+    def search(self, query):
+        top_docs, query_dict = self.search_tfidf(query)
+        doc_indices = self.get_indices(top_docs, query_dict)
+        top_urls = self.get_urls(top_docs)
+        final_dict = {}
+        for doc in top_docs:
+            title, contents = self.get_titleandContents(doc)
+            snippet = self.get_snippet(contents, doc_indices[doc])
+            url = top_urls[doc]['url']
+            final_dict[str(url)] = {'title': str(title), 'snippet': str(snippet)}
+
+        # for printing if you want to test
+        # for entry in final_dict:
+        #     print ("{} - {}".format(entry, final_dict[entry]))
+        return final_dict
+
+'''
+NOTE TO JASON:
+Hey, finished this last night, just was in the zone lol.
+Here is the search all finished. From the frontend just call invDictObj.search("query").
+That will return a url mapped to a dictionary of title and snippet.
+If you want to try, uncomment the code below this and the small print section I commented in search at the end.
+It works pretty well, it takes about 2.5 seconds to run.
+Only issue I found was sometimes a snippet was long for some reason (even though i specified length).
+'''
+
+# start_time = time()
+# test = InvertedDictionary()
+# test.search("computer science")
+# end_time = time() - start_time
 # print("elapse time: {}s".format(end_time))
