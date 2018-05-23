@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+html{
+  background: linear-gradient(#1da1f2, #b7e3ff);
+  background-attachment: fixed;
+}
