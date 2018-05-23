@@ -8,6 +8,7 @@ import nltk
 from nltk.corpus import stopwords
 from time import time
 import math
+import operator
 
 import json
 
@@ -224,29 +225,62 @@ class InvertedDictionary:
         for links in urls:
             print(links)
 
-    def search_multi(self, query):
-        # if we're doing it right, add only do calcs for docs with all words in query
-        freq_dict = self.tokenize(query)
+   # def calc_similarity(self, query):
+
+    def merge_postings(self, query_dict):
+        merged = set()
+        print (len(merged))
+        lengths = []
+        postings = {}
+        for token in query_dict:
+            result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "_id": 0})
+            posting = set()
+            for docId in result.next()['posting']:
+                posting.add(str(docId['docId']))
+            postings[token] = posting
+            #print (posting)
+            lengths.append(len(posting))
+            if len(merged) == 0:
+                merged = posting
+            else:
+                print ("in intersect, length of merge = {}".format(len(merged)))
+                merged = merged.intersection(posting)
+                print ("in intersect after merge, length of merge = {}".format(len(merged)))
+
+    def calc_query_tfidf(self, query_dict):
         query_tfidf = {}
-        query_df = len(freq_dict)
-        scores = {} # maps docId to cosine scores
-        scores2 = {}
         # now loop through calc tf-idf for each term in query
-        for term in freq_dict:
-            tf = freq_dict[term]
+        for term in query_dict:
+            tf = query_dict[term]
             result = self.db.Corpus.find({"token": term}, {"posting.docId": 1, "_id": 0})
             query_df = len(result.next()['posting'])
             query_idf = math.log((self.get_docCount() / query_df), 10)
             tf_idf = query_idf * (1 + math.log(tf, 10))
             tf_idf = float("{0:.3f}".format(tf_idf))
             query_tfidf[term] = tf_idf
-        print (query_tfidf)
+        return query_tfidf
 
-        # loop through
+    def union_postings(self, query_dict):
+        union = {}
+        for token in query_dict:
+            result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics.tf-idf": 1, "_id": 0})
+            posting = result.next()['posting']
+            for doc in posting:
+                doc_tfidf = doc['metrics']['tf-idf']
+                docId = doc['docId']
+                if (docId in union):
+                    union[docId] += doc_tfidf
+                else:
+                    union[docId] = doc_tfidf
+        return union
+
+    def calc_scoresAndLengths(self, query_tfidf):
+        scores = {}
+        doc_lengths = {}
         for token in query_tfidf:
-            result = self.db.Corpus.find({"token": token}, {"posting.docId":1, "posting.metrics.tf-idf": 1, "_id": 0})
-            result = result.next()['posting']
-            for doc in result:
+            result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics.tf-idf": 1, "_id": 0})
+            posting = result.next()['posting']
+            for doc in posting:
                 doc_tfidf = doc['metrics']['tf-idf']
                 docId = doc['docId']
                 score = query_tfidf[token] * doc_tfidf
@@ -254,33 +288,45 @@ class InvertedDictionary:
                     scores[docId] += float("{0:.3f}".format(score))
                 else:
                     scores[docId] = float("{0:.3f}".format(score))
+                if docId in doc_lengths:
+                    doc_lengths[docId] += doc_tfidf**2
+                else:
+                    doc_lengths[docId] = doc_tfidf ** 2
 
-        length = 0
-        for i in scores:
-            length += scores[i]**2
-        length = math.sqrt(length)
-        check = 0
-        for i in scores:
-            scores[i] = scores[i]/length
-            print ("{} doc: {}".format(i, scores[i]))
-            check += scores[i]
-        import operator
-        sorted_x = sorted(scores.items(), key=operator.itemgetter(1))
-        print (sorted_x)
+        return scores, doc_lengths
 
-        print (check)
+    def finish_lengths(self, doc_lengths):
+        for doc in doc_lengths:
+            doc_lengths[doc] = math.sqrt(doc_lengths[doc])
+        return doc_lengths
 
+    def finish_scores(self, scores, doc_lengths):
+        for doc in scores:
+            scores[doc] = scores[doc]/doc_lengths[doc]
+        return scores
 
-        # for tf-idf, get posting for each query term, get intersecion of docIds, then do if-idf on that
+    def search_cosine(self, query):
+        # if we're doing it right, add only do calcs for docs with all words in query
+        query_dict = self.tokenize(query)
 
+        query_tfidf = self.calc_query_tfidf(query_dict)
+        scores, doc_lengths = self.calc_scoresAndLengths(query_tfidf)
+        doc_lengths = self.finish_lengths(doc_lengths)
+        scores = self.finish_scores(scores, doc_lengths)
 
+        sorted_scores = sorted(scores.items(), key=operator.itemgetter(1), reverse=True)
+        return sorted_scores
 
-
+    def search_tfidf(self, query):
+        query_dict = self.tokenize(query)
+        union_scores = self.union_postings(query_dict)
+        sorted_scores = sorted(union_scores.items(), key=operator.itemgetter(1), reverse=True)
+        print (sorted_scores)
 
 
 start_time = time()
 test = InvertedDictionary()
-test.search_multi("sergio is boring really boring")
+test.search_tfidf("artificial intelligence")
 end_time = time() - start_time
 
 print("elapse time: {}s".format(end_time))
