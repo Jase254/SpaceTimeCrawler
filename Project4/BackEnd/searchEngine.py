@@ -323,10 +323,10 @@ class InvertedDictionary:
         sorted_scores = sorted(union_scores.items(), key=operator.itemgetter(1), reverse=True)
         print (sorted_scores)
 
-
 start_time = time()
 test = InvertedDictionary()
 test.search_tfidf("artificial intelligence")
 end_time = time() - start_time
 
-print("elapse time: {}s".format(end_time))
+
+# print("elapse time: {}s".format(end_time))
