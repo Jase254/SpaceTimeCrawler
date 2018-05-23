@@ -1,0 +1,123 @@
+h1{
+  color: white;
+  font-family: 'Barlow Semi Condensed';
+  font-size: 3.7em;
+}
+h2{
+  color: white;
+  font-family: 'Barlow Semi Condensed';
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+input[type=text]:focus,input[type=text]:hover{
+  outline: none;
+  width: 75%;
+  height: 60px;
+}
+
+.rangeDisplay{
+  margin-bottom: 50px;
+}
+.rangeblock{
+  font-family: "Barlow Semi Condensed";
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.scoreAverage{
+  max-width: 300px;
+  margin-top: 150px;
+}
+.gpa{
+  margin: -75px;
+}
+.rangeElemRed{
+  padding: .6em;
+  background-color: #ff3f3f;
+  color: white;
+}
+.rangeElemYellow{
+  padding: .6em;
+  background-color: #ffeb3f;
+  color: darkgrey;
+}
+.rangeElemGreen{
+  padding: .6em;
+  background-color: #3fff5b;
+  color: darkgrey;
+}
+.tweetscore{
+  height: 90px;
+  width: 90px;
+  min-height: 90px;
+  min-width: 90px;
+  background-color: #555;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+.circle {
+  font-family: cabin condensed;
+}
+
+.tweetlogo{
+  border-radius: 15px;
+  flex-grow: 0;
+  max-width:75px;
+  max-height:75px;
+  width: 75px;
+  height: 75px;
+  min-width: 75px;
+  min-height: 75px;
+  background-color: #1da1f2;
+  margin: 25px 25px 25px 25px;
+  box-shadow: none;
+  border: none;
+}
+
+img{
+  width: 100%;
+  height: 100%;
+}
+.tweetblock{
+  width: 80%;
+  max-width: 1000px;
+  min-height: 100px;
+  margin-top: 35px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #F5F5F5;
+}
+.tweettext{
+  padding:  30px 20px 20px 20px;
+  font-size: 1.2em;
+  font-family: helvetica;
+  text-align: left;
+}
+input[type=text]{
+  flex-shrink: 0;
+  flex-grow: 1;
+  height: 50px;
+  width: 50%;
+  max-width: 600px;
+  white-space: nowrap;
+  border: none;
+  font-size: 1.7em;
+  font-family: "Roboto";
+  font-style: oblique;
+  padding-left: 50px;
+  box-shadow: 0 0 50px #F5F5F5;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  transition: width 0.3s, height 0.2s ease-in-out;
+}
+
+@media only screen and (min-width: 768px) {
+  h1 {
+    margin-top: 25%;
+  }
+}
+
