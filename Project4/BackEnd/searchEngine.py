@@ -418,5 +418,4 @@ Only issue I found was sometimes a snippet was long for some reason (even though
 # test = InvertedDictionary()
 # test.search("computer science")
 # end_time = time() - start_time
-#
 # print("elapse time: {}s".format(end_time))
