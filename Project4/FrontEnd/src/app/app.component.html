@@ -1,17 +1,37 @@
+
 <div  class ="container search"
       fxLayout ="column"
       fxLayoutAlign="space-between center"
       fxLayoutGap="10px"
       style="text-align:center">
+
   <div class="item item-1" fxFlex="50%">
     <h1>
-      How do people feel about...
+      Haystack Search
     </h1>
   </div>
+
   <div class="item item-2" fxFlexLayout="row" fxFill>
-    <!--Remember to addToBody()-->
-    <input #box name="search" type="text" placeholder="{{stuff}}" (keyup.enter)="searchTweet(box.value)">
-    <div>
-      <!--<img src="/assets/Images/Wow.gif">-->
+    <input #box name="search" type="text" placeholder="{{holder}}" (keyup.enter)="searchUrls(box.value)">
+  </div>
+<br>
+  <label class="switch">
+    <input type="checkbox" [checked]="cosine" (change)="cosine = !cosine">
+    <span class="slider round"></span>
+  </label>
+
+  <div class="item item-2 tweetblock" fxFlexLayout="row" fxLayoutAlign="start center" *ngFor="let url of urls" id="tweetboxes">
+    <div class="item item-3 tweetlogo" fxFlex="75px">
+      <!--<img src="/assets/Images/twitter.png">-->
+    </div>
+    <div class="item item-3 tweettext" fxFlex="80%">
+      <a href="http://{{url.url}}" target="_blank">{{url.title}}</a>
+      <p class="snippet">"{{url.snippet}}"</p>
     </div>
   </div>
+
+  <div *ngIf="dataLoading">
+    <app-loading></app-loading>
+  </div>
+</div>
+

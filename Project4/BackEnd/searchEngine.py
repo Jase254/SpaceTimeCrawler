@@ -314,7 +314,7 @@ class InvertedDictionary:
 
         sorted_scores = sorted(scores.items(), key=operator.itemgetter(1), reverse=True)
         final_docs = self.strip_scores(sorted_scores)
-        return final_docs
+        return final_docs, query
 
     def search_tfidf(self, query):
         query_dict = self.tokenize(query)
@@ -353,7 +353,11 @@ class InvertedDictionary:
 
             clear += re.sub('[^0-9a-zA-Z]+', ' ', tags.getText(' ')) + '\n'
 
-        title = soup.title.string
+        if soup.title == '':
+            title = "Not Available"
+        else:
+            title = title = soup.title.string
+
         f.close()
         return title, clear
 
@@ -361,15 +365,21 @@ class InvertedDictionary:
         doc_indices = {}
         for token in query_dict:
             result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics.indices": 1, "_id": 0})
-            posting = result.next()['posting']
-            for doc in posting:
-                indices = doc['metrics']['indices']
-                docId = doc['docId']
-                if docId in top_docs and docId not in doc_indices:
-                    doc_indices[docId] = indices
-                elif docId in top_docs and docId in doc_indices:
-                    old_list = doc_indices[docId]
-                    doc_indices[docId] = old_list + indices
+
+            try:
+                posting = result.next()['posting']
+                print(posting)
+                for doc in posting:
+                    indices = doc['metrics']['indices']
+                    docId = doc['docId']
+                    if docId in top_docs and docId not in doc_indices:
+                        doc_indices[docId] = indices[0]
+                    elif docId in top_docs and docId in doc_indices:
+                        old_list = doc_indices[docId]
+                        doc_indices[docId] = old_list + indices
+            except Exception as e:
+                continue
+
         return doc_indices
 
     def get_snippet(self, contents, indices):
@@ -387,9 +397,12 @@ class InvertedDictionary:
         snippet = contents[beg:end]
         return snippet
 
+    def search(self, query, mode):
+        if mode == 'tfidf':
+            top_docs, query_dict = self.search_tfidf(query)
+        else:
+            top_docs, query_dict = self.search_cosine(query)
 
-    def search(self, query):
-        top_docs, query_dict = self.search_tfidf(query)
         doc_indices = self.get_indices(top_docs, query_dict)
         top_urls = self.get_urls(top_docs)
         final_dict = {}
@@ -414,8 +427,8 @@ It works pretty well, it takes about 2.5 seconds to run.
 Only issue I found was sometimes a snippet was long for some reason (even though i specified length).
 '''
 
-# start_time = time()
-# test = InvertedDictionary()
-# test.search("computer science")
-# end_time = time() - start_time
-# print("elapse time: {}s".format(end_time))
+start_time = time()
+test = InvertedDictionary()
+test.search("computer science", 'cosine')
+end_time = time() - start_time
+print("elapse time: {}s".format(end_time))

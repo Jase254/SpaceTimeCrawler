@@ -32,21 +32,7 @@ input[type=text]:focus,input[type=text]:hover{
 .gpa{
   margin: -75px;
 }
-.rangeElemRed{
-  padding: .6em;
-  background-color: #ff3f3f;
-  color: white;
-}
-.rangeElemYellow{
-  padding: .6em;
-  background-color: #ffeb3f;
-  color: darkgrey;
-}
-.rangeElemGreen{
-  padding: .6em;
-  background-color: #3fff5b;
-  color: darkgrey;
-}
+
 .tweetscore{
   height: 90px;
   width: 90px;
@@ -82,7 +68,7 @@ img{
 .tweetblock{
   width: 80%;
   max-width: 1000px;
-  min-height: 100px;
+  max-height: 140px;
   margin-top: 35px;
   margin-left: 50px;
   margin-right: 50px;
@@ -92,10 +78,18 @@ img{
 }
 .tweettext{
   padding:  30px 20px 20px 20px;
-  font-size: 1.2em;
+  font-size: initial;
   font-family: helvetica;
-  text-align: left;
+  text-align: center;
 }
+
+.snippet{
+  padding:  30px 20px 20px 20px;
+  font-size: initial;
+  font-family: 'Roboto',arial,sans-serif;
+  text-align: center;
+}
+
 input[type=text]{
   flex-shrink: 0;
   flex-grow: 1;
@@ -106,8 +100,8 @@ input[type=text]{
   border: none;
   font-size: 1.7em;
   font-family: "Roboto";
+  text-align: center;
   font-style: oblique;
-  padding-left: 50px;
   box-shadow: 0 0 50px #F5F5F5;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
@@ -120,4 +114,64 @@ input[type=text]{
     margin-top: 25%;
   }
 }
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: rgba(83, 85, 82, 0.96);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #535552;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 

@@ -13,10 +13,18 @@ def initialize():
     return 'Home!'
 
 
-@app.route('/search/<string:search_term>', methods=['POST', 'GET'])
+@app.route('/search/tfidf/<string:search_term>', methods=['POST', 'GET'])
 @cross_origin()
-def search(search_term):
-    return 'search term: {}'.format(search_term)
+def search_tfidf(search_term):
+    obtained_urls = engine.search(search_term, 'tfidf')
+    return jsonify(obtained_urls)
+
+
+@app.route('/search/cosine/<string:search_term>', methods=['POST', 'GET'])
+@cross_origin()
+def search_cosine(search_term):
+    obtained_urls = engine.search(search_term, 'cosine')
+    return jsonify(obtained_urls)
 
 
 if __name__ == '__main__':
