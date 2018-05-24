@@ -21,7 +21,8 @@ export class HttpService {
         .toPromise()
         .then(res => {
           this.data = res.json();
-
+          this.results = []
+          this.num_urls = 0
           for(let key in this.data){
             let title  = this.data[key]['title'];
             let snippet = this.data[key]['snippet'];
@@ -44,7 +45,8 @@ export class HttpService {
         .toPromise()
         .then(res => {
           this.data = res.json();
-
+          this.results = []
+          this.num_urls = 0
           for(let key in this.data){
             let title  = this.data[key]['title'];
             let snippet = this.data[key]['snippet'];

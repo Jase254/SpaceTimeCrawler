@@ -172,7 +172,6 @@ class InvertedDictionary:
                                          'indices': docs[1][1]}}
 
                     entry['posting'].append(posting_list)
-                print entry
                 self.db.Corpus.insert(entry)
                 if i % 1000 == 0:
                     print('{} Items added to Corpus'.format(i))
@@ -255,39 +254,57 @@ class InvertedDictionary:
         return query_tfidf
 
     def union_postings(self, query_dict):
-        union = {}
+        union_tfidf = {}
+        union_index = {}
         for token in query_dict:
-            result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics.tf-idf": 1, "_id": 0})
+            result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics.": 1, "_id": 0})
             posting = result.next()['posting']
             for doc in posting:
                 doc_tfidf = doc['metrics']['tf-idf']
+                doc_indices = doc['metrics']['indices']
+                doc_indices.sort()
+                first_index = doc_indices[0]
                 docId = doc['docId']
-                if (docId in union):
-                    union[docId] += doc_tfidf
+                if docId in union_tfidf:
+                    index = union_index[docId]
+                    if first_index < index:
+                        index = first_index
+                    union_index[docId] = index
+                    union_tfidf[docId] = union_tfidf[docId] + doc_tfidf
                 else:
-                    union[docId] = doc_tfidf
-        return union
+                    union_tfidf[docId] = doc_tfidf
+                    union_index[docId] = first_index
+        return union_tfidf, union_index # now docId -> doc_tfidf, first_index
 
     def calc_scoresAndLengths(self, query_tfidf):
         scores = {}
         doc_lengths = {}
+        indices = {}
         for token in query_tfidf:
-            result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics.tf-idf": 1, "_id": 0})
+            result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics": 1, "_id": 0})
             posting = result.next()['posting']
             for doc in posting:
                 doc_tfidf = doc['metrics']['tf-idf']
+                doc_indices = doc['metrics']['indices']
+                doc_indices.sort()
+                first_index = doc_indices[0]
                 docId = doc['docId']
                 score = query_tfidf[token] * doc_tfidf
                 if docId in scores:
+                    index = indices[docId]
+                    if first_index < index:
+                        index = first_index
+                        indices[docId] = index
                     scores[docId] += float("{0:.3f}".format(score))
                 else:
                     scores[docId] = float("{0:.3f}".format(score))
+                    indices[docId] = first_index
                 if docId in doc_lengths:
                     doc_lengths[docId] += doc_tfidf**2
                 else:
                     doc_lengths[docId] = doc_tfidf ** 2
 
-        return scores, doc_lengths
+        return scores, indices, doc_lengths
 
     def finish_lengths(self, doc_lengths):
         for doc in doc_lengths:
@@ -302,27 +319,44 @@ class InvertedDictionary:
     def strip_scores(self, scores):
         final_docs = []
         for i in range(10):
-            final_docs.append(str(scores[i][0]))
+            final_docs.append(scores[i])
         return final_docs
 
     def search_cosine(self, query):
         query_dict = self.tokenize(query)
         query_tfidf = self.calc_query_tfidf(query_dict)
-        scores, doc_lengths = self.calc_scoresAndLengths(query_tfidf)
+        scores, indices, doc_lengths = self.calc_scoresAndLengths(query_tfidf)
         doc_lengths = self.finish_lengths(doc_lengths)
         scores = self.finish_scores(scores, doc_lengths)
 
         sorted_scores = sorted(scores.items(), key=operator.itemgetter(1), reverse=True)
         final_docs = self.strip_scores(sorted_scores)
-        return final_docs, query
+        final_docs = self.listToDict(final_docs)
+        final_indices = self.get_top_indices(final_docs, indices)
+        return final_docs, final_indices, query
+
+    def listToDict (self, list):
+        new_dict = {}
+        for i in range(len(list)):
+            new_dict[list[i][0]] = list[i][1]
+        return new_dict
+
+    def get_top_indices(self, top_docs, indices):
+        top_indices = {}
+        for docId in indices:
+            if docId in top_docs:
+                top_indices[docId] = indices[docId]
+        return top_indices
+
 
     def search_tfidf(self, query):
         query_dict = self.tokenize(query)
-        union_scores = self.union_postings(query_dict)
-
+        union_scores, union_indices = self.union_postings(query_dict)
         sorted_scores = sorted(union_scores.items(), key=operator.itemgetter(1), reverse=True)
-        final_docs = self.strip_scores(sorted_scores)
-        return final_docs, query_dict
+        final_docs = self.strip_scores(sorted_scores) # gets docIds of top 10 scoring
+        final_docs = self.listToDict(final_docs)
+        final_indices = self.get_top_indices(final_docs, union_indices)
+        return final_docs, final_indices, query_dict
 
     def get_urls(self, docIds):
         top_urls = {}
@@ -344,71 +378,70 @@ class InvertedDictionary:
         clear = ''
 
         for tags in soup.findAll(['p', 'h1', 'h2', 'h3', 'title']):
-
             for a in tags(['a', 'img', 'script', 'style']):
                 a.decompose()
-
             for element in tags(text=lambda text: isinstance(text, Comment)):
                 element.extract()
 
             clear += re.sub('[^0-9a-zA-Z]+', ' ', tags.getText(' ')) + '\n'
 
-        if soup.title == '':
+        if soup.title is None:
             title = "Not Available"
         else:
-            title = title = soup.title.string
+            title = soup.title.string
 
         f.close()
         return title, clear
 
-    def get_indices(self, top_docs, query_dict):
-        doc_indices = {}
-        for token in query_dict:
-            result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics.indices": 1, "_id": 0})
+    # def get_indices(self, top_docs, query_dict):
+    #     doc_indices = {}
+    #     for token in query_dict:
+    #         result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics.indices": 1, "_id": 0})
+    #
+    #         try:
+    #             posting = result.next()['posting']
+    #             print(posting)
+    #             for doc in posting:
+    #                 indices = doc['metrics']['indices']
+    #                 docId = doc['docId']
+    #                 if docId in top_docs and docId not in doc_indices:
+    #                     doc_indices[docId] = indices[0]
+    #                 elif docId in top_docs and docId in doc_indices:
+    #                     old_list = doc_indices[docId]
+    #                     doc_indices[docId] = old_list + indices
+    #         except Exception as e:
+    #             continue
+    #
+    #     return doc_indices
 
-            try:
-                posting = result.next()['posting']
-                print(posting)
-                for doc in posting:
-                    indices = doc['metrics']['indices']
-                    docId = doc['docId']
-                    if docId in top_docs and docId not in doc_indices:
-                        doc_indices[docId] = indices[0]
-                    elif docId in top_docs and docId in doc_indices:
-                        old_list = doc_indices[docId]
-                        doc_indices[docId] = old_list + indices
-            except Exception as e:
-                continue
-
-        return doc_indices
-
-    def get_snippet(self, contents, indices):
+    def get_snippet(self, contents, first_index):
         # window of just first occurence in doc, window of 20 before and 30 after
-        indices.sort()
-        first_index = indices[0]
-        if first_index - 20 < 0:
+        # indices.sort()
+        # first_index = indices[0]
+        if first_index - 60 < 0:
             beg = 0
         else:
-            beg = contents.find(' ', first_index-20, first_index-10) + 1
-        if first_index + 30 >= len(contents):
+            beg = contents.find(' ', first_index-60, first_index-50) + 1
+        if first_index + 60 >= len(contents):
             end = len(contents)
         else:
-            end = contents.find(' ', first_index+20, first_index+30)
+            end = contents.find(' ', first_index+50, first_index+60)
         snippet = contents[beg:end]
+        if (len(snippet) > 130):
+            snippet = snippet[:130]
         return snippet
 
     def search(self, query, mode):
         if mode == 'tfidf':
-            top_docs, query_dict = self.search_tfidf(query)
+            top_docs, top_indices, query_dict = self.search_tfidf(query)
         else:
-            top_docs, query_dict = self.search_cosine(query)
+            top_docs, top_indices, query_dict = self.search_cosine(query)
 
-        doc_indices = self.get_indices(top_docs, query_dict)
         top_urls = self.get_urls(top_docs)
         final_dict = {}
         for doc in top_docs:
             title, contents = self.get_titleandContents(doc)
-            snippet = self.get_snippet(contents, doc_indices[doc])
+            snippet = self.get_snippet(contents, top_indices[doc])
             url = top_urls[doc]['url']
             final_dict[str(url)] = {'title': str(title), 'snippet': str(snippet)}
 
@@ -427,8 +460,8 @@ It works pretty well, it takes about 2.5 seconds to run.
 Only issue I found was sometimes a snippet was long for some reason (even though i specified length).
 '''
 
-start_time = time()
-test = InvertedDictionary()
-test.search("computer science", 'cosine')
-end_time = time() - start_time
-print("elapse time: {}s".format(end_time))
+# start_time = time()
+# test = InvertedDictionary()
+# test.search("computer science", 'cosine')
+# end_time = time() - start_time
+# print("elapse time: {}s".format(end_time))
