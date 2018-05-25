@@ -14,19 +14,28 @@
   <div class="item item-2" fxFlexLayout="row" fxFill>
     <input #box name="search" type="text" placeholder="{{holder}}" (keyup.enter)="searchUrls(box.value)">
   </div>
-<br>
+  <br>
+
+  <div class="modeSelector">
   <label class="switch">
     <input type="checkbox" [checked]="cosine" (change)="cosine = !cosine">
     <span class="slider round"></span>
   </label>
+  <div class="mode" *ngIf="cosine">
+    COSINE
+  </div>
+  <div class="mode" *ngIf="!cosine">
+    TFIDF
+  </div>
+  </div>
 
   <div class="item item-2 tweetblock" fxFlexLayout="row" fxLayoutAlign="start center" *ngFor="let url of urls" id="tweetboxes">
     <div class="item item-3 tweetlogo" fxFlex="75px">
-      <!--<img src="/assets/Images/twitter.png">-->
+      <img src="assets/weed.png">
     </div>
     <div class="item item-3 tweettext" fxFlex="80%">
-      <a href="http://{{url.url}}" target="_blank">{{url.title}}</a>
-      <p class="snippet">"{{url.snippet}}"</p>
+      <a class="url" href="http://{{url.url}}" target="_blank">{{url.title}}</a>
+      <p class="snippet">"...{{url.snippet}}..."</p>
     </div>
   </div>
 

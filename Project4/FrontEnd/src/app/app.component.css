@@ -55,7 +55,7 @@ input[type=text]:focus,input[type=text]:hover{
   height: 75px;
   min-width: 75px;
   min-height: 75px;
-  background-color: #1da1f2;
+  background-color: rgba(83, 85, 82, 0.96);
   margin: 25px 25px 25px 25px;
   box-shadow: none;
   border: none;
@@ -84,9 +84,29 @@ img{
 }
 
 .snippet{
-  padding:  30px 20px 20px 20px;
-  font-size: initial;
+  /*padding:  30px 20px 20px 20px;*/
+  font-size: smaller;
   font-family: 'Roboto',arial,sans-serif;
+  text-align: center;
+  padding: 5px;
+}
+
+.modeSelector{
+  column-count: 2;
+  column-gap: 20px;
+  column-width: 30px;
+  text-align: -webkit-match-parent;
+}
+
+.mode{
+  color: white;
+  font-family: 'Barlow Semi Condensed';;
+  font-size: 2.5em;
+}
+
+.url{
+  font-size: large;
+  font-family: 'Barlow Semi Condensed';;
   text-align: center;
 }
 
@@ -121,6 +141,8 @@ input[type=text]{
   display: inline-block;
   width: 60px;
   height: 34px;
+  margin-top: 10px;
+  text-align: left;
 }
 
 /* Hide default HTML checkbox */
