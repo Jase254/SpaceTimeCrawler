@@ -17,18 +17,24 @@
   <br>
 
   <div class="modeSelector">
-  <label class="switch">
-    <input type="checkbox" [checked]="cosine" (change)="cosine = !cosine">
-    <span class="slider round"></span>
-  </label>
-  <div class="mode" *ngIf="cosine">
-    COSINE
-  </div>
-  <div class="mode" *ngIf="!cosine">
-    TFIDF
-  </div>
+    <label class="switch">
+      <input type="checkbox" [checked]="cosine" (change)="cosine = !cosine">
+      <span class="slider round"></span>
+    </label>
+    <div class="mode" *ngIf="cosine">
+      COSINE
+    </div>
+    <div class="mode" *ngIf="!cosine">
+      TFIDF
+    </div>
   </div>
 
+  <div *ngIf="urls.length != 0">
+    <br>
+    <br>
+    <div class="time">
+      Harvest Completed in: {{searchTime}} seconds
+    </div>
   <div class="item item-2 tweetblock" fxFlexLayout="row" fxLayoutAlign="start center" *ngFor="let url of urls" id="tweetboxes">
     <div class="item item-3 tweetlogo" fxFlex="75px">
       <img src="assets/weed.png">
@@ -38,9 +44,38 @@
       <p class="snippet">"...{{url.snippet}}..."</p>
     </div>
   </div>
+  </div>
 
   <div *ngIf="dataLoading">
     <app-loading></app-loading>
+  </div>
+
+  <div *ngIf="broke">
+    <br>
+    <br>
+    <div class="errorBox">
+    <span class="errorLogo" fxFlex="75px">
+      <img src="assets/weed.png">
+    </span>
+    </div>
+    <br>
+    <div class="error">
+      "Oops! Farmers are on Strike!"
+    </div>
+  </div>
+
+  <div *ngIf="noResults">
+    <br>
+    <br>
+    <div class="errorBox">
+    <span class="errorLogo" fxFlex="75px">
+      <img src="assets/weed.png">
+    </span>
+    </div>
+    <br>
+    <div class="error">
+      "Oops! Nothing to Harvest"
+    </div>
   </div>
 </div>
 

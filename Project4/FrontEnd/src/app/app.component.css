@@ -61,6 +61,33 @@ input[type=text]:focus,input[type=text]:hover{
   border: none;
 }
 
+.errorLogo{
+  border-radius: 15px;
+  flex-grow: 0;
+  max-width:75px;
+  max-height:75px;
+  width: 75px;
+  height: 75px;
+  min-width: 75px;
+  min-height: 75px;
+  background-color: rgba(83, 85, 82, 0.96);
+  margin: 25px 25px 25px 25px;
+  box-shadow: none;
+  border: none;
+  display: -webkit-inline-flex;
+}
+
+.time{
+  color: white;
+  font-family: 'Barlow Semi Condensed';;
+  font-size: 1em;
+}
+
+.errorBox{
+  box-sizing: border-box;
+  display: -webkit-inline-flex !important;
+}
+
 img{
   width: 100%;
   height: 100%;
@@ -70,12 +97,13 @@ img{
   max-width: 1000px;
   max-height: 140px;
   margin-top: 35px;
-  margin-left: 50px;
+  margin-left: 100px;
   margin-right: 50px;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 0 10px #F5F5F5;
 }
+
 .tweettext{
   padding:  30px 20px 20px 20px;
   font-size: initial;
@@ -102,6 +130,12 @@ img{
   color: white;
   font-family: 'Barlow Semi Condensed';;
   font-size: 2.5em;
+}
+
+.error{
+  color: white;
+  font-family: 'Barlow Semi Condensed';;
+  font-size: 1.8em;
 }
 
 .url{

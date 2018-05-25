@@ -17,9 +17,10 @@ export class AppComponent {
 
   urls = [];
   dataLoading: boolean = false;
-  displayScore: number = 0;
   broke: boolean = false;
   cosine: boolean = false;
+  noResults  = false;
+  searchTime = '3.2';
 
   searchUrls(searchTerm) {
     this.urls = [];
@@ -34,7 +35,6 @@ export class AppComponent {
         this.urls = this.httpService.getData();
         console.log('fulfilled');
         this.dataLoading = false;
-        this.displayScore = 3;
       }, rej => {
         console.log("endpoint broke")
         this.broke = true;
@@ -43,11 +43,15 @@ export class AppComponent {
     }
     else {
       this.httpService.search_tfidf(searchTerm).then(_ => {
+        this.broke = false;
+        this.noResults = false;
         this.urls = [];
         this.urls = this.httpService.getData();
+        if(this.urls.length == 0) {
+          this.noResults = true;
+        }
         console.log('fulfilled');
         this.dataLoading = false;
-        this.displayScore = 3;
       }, rej => {
         console.log("endpoint broke")
         this.broke = true;
