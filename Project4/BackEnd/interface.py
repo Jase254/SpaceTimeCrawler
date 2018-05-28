@@ -20,6 +20,14 @@ def search_tfidf(search_term):
     return jsonify(obtained_urls)
 
 
+@app.route('/search/time', methods=['POST', 'GET'])
+@cross_origin()
+def get_search_time():
+    time = engine.get_time()
+    time = float("{0:.3f}".format(time))
+    return jsonify(time)
+
+
 @app.route('/search/cosine/<string:search_term>', methods=['POST', 'GET'])
 @cross_origin()
 def search_cosine(search_term):

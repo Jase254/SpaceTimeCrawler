@@ -212,7 +212,6 @@ class InvertedDictionary:
 
         # set document count variable
         self.docCount = len(self.urls)
-        # self.db2.Urls.insert(self.urls)  ############# DO WE NEED THIS ###################################
 
     # helper function that returns number of documents in inverted index
     def get_docCount (self):
@@ -473,7 +472,7 @@ class InvertedDictionary:
             snippet = self.get_snippet(contents, top_indices[doc])
             # retrieve url for top document
             url = top_urls[doc]['url']
-            # create dicationary entry in json format for return
+            # create dictionary entry in json format for return
             final_dict[str(url)] = {'title': str(title), 'snippet': str(snippet)}
 
         # stop keeping time as search is done
