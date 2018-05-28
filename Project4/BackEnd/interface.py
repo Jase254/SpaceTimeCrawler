@@ -17,6 +17,8 @@ def initialize():
 @cross_origin()
 def search_tfidf(search_term):
     obtained_urls = engine.search(search_term, 'tfidf')
+    print(obtained_urls)
+    type(obtained_urls)
     return jsonify(obtained_urls)
 
 
@@ -32,6 +34,8 @@ def get_search_time():
 @cross_origin()
 def search_cosine(search_term):
     obtained_urls = engine.search(search_term, 'cosine')
+    print(obtained_urls)
+    type(obtained_urls)
     return jsonify(obtained_urls)
 
 

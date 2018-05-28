@@ -85,14 +85,6 @@ class InvertedDictionary:
                 word = ''
         return tokens
 
-    # # not called i think
-    # def sort_tokens(self, token_dict):
-    #     return sorted(token_dict.items(), key=lambda x: (-x[1], x[0]))
-
-    # def print_tokens(self):
-    #     for i in self.invDict:
-    #         print ('%s - %i' % (i[0], i[1]))
-
     # calculate log term frequency given number of occurrences of a token
     def calc_tf(self, term_frequency):
         tf = 1 + math.log(term_frequency, 10)
@@ -235,7 +227,10 @@ class InvertedDictionary:
             # retrieve from database the query token
             result = self.db.Corpus.find({"token": term}, {"posting.docId": 1, "_id": 0})
             # calculate token idf from the length of retrieved posting list
-            query_df = len(result.next()['posting'])
+            try:
+                query_df = len(result.next()['posting'])
+            except Exception as e:
+                continue
             query_idf = math.log((self.get_docCount() / query_df), 10)
             # calculate tf-idf using query idf and query tf
             tf_idf = query_idf * (1 + math.log(tf, 10))
@@ -251,7 +246,10 @@ class InvertedDictionary:
         for token in query_dict:
             # retrieve from database the query token, docId, and metrics
             result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics.": 1, "_id": 0})
-            posting = result.next()['posting']
+            try:
+                posting = result.next()['posting']
+            except Exception as e:
+                continue
             # loop through token's posting list
             for doc in posting:
                 # grab document tf-idf and indices from metrics
@@ -286,7 +284,11 @@ class InvertedDictionary:
         for token in query_tfidf:
             # retrieve from database the query token, docId, and metrics
             result = self.db.Corpus.find({"token": token}, {"posting.docId": 1, "posting.metrics": 1, "_id": 0})
-            posting = result.next()['posting']
+            try:
+                posting = result.next()['posting']
+            except Exception as e:
+                continue
+
             # loop through token's posting list
             for doc in posting:
                 # grab document tf-idf and indices from metrics
@@ -359,7 +361,7 @@ class InvertedDictionary:
         final_docs = self.strip_scores(sorted_scores)
         final_docs = self.listToDict(final_docs)
         final_indices = self.get_top_indices(final_docs, indices)
-        return final_docs, final_indices, query
+        return final_docs, final_indices, query_dict
 
     # helper function to convert list to dictionary
     def listToDict (self, list):
@@ -421,7 +423,7 @@ class InvertedDictionary:
             for element in tags(text=lambda text: isinstance(text, Comment)):
                 element.extract()
             # concatenate alpha-numeric characters from relevant tags to final contents
-                final_contents += re.sub('[^0-9a-zA-Z]+', ' ', tags.getText(' ')) + '\n'
+            final_contents += re.sub('[^0-9a-zA-Z]+', ' ', tags.getText(' ')) + '\n'
 
         # retrieve title of html page
         if soup.title is None:
@@ -461,8 +463,14 @@ class InvertedDictionary:
         # perform inputted search
         if mode == 'tfidf':
             top_docs, top_indices, query_dict = self.search_tfidf(query)
+            print(top_docs)
+            print(top_indices)
+            print(query_dict)
         else:
             top_docs, top_indices, query_dict = self.search_cosine(query)
+            print(top_docs)
+            print(top_indices)
+            print(query_dict)
         # retrieve top urls associated with top documents
         top_urls = self.get_urls(top_docs)
         final_dict = {}
@@ -494,6 +502,6 @@ check out line 215 i'm pretty sure we don't need it as we insert insert into url
 
 # start_time = time()
 # test = InvertedDictionary()
-# test.search("computer science", 'cosine')
+# test.search("cisds", 'cosine')
 # end_time = time() - start_time
 # print("elapse time: {}s".format(end_time))

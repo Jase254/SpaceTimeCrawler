@@ -25,33 +25,38 @@ export class AppComponent {
   searchUrls(searchTerm) {
     this.urls = [];
     this.dataLoading = true;
+    this.broke = false;
+    this.noResults = false;
     console.log(this.cosine);
 
 
     console.log(searchTerm);
     if (this.cosine) {
       this.httpService.search_cosine(searchTerm).then(_ => {
+
+        this.httpService.search_time().then(_ => {
+          this.searchTime = this.httpService.getTime();
+        }, rej => {
+          this.searchTime = '0'
+        });
         this.urls = [];
         this.urls = this.httpService.getData();
         console.log('fulfilled');
         this.dataLoading = false;
+
+        if(this.urls.length == 0) {
+          this.noResults = true;
+        }
+
       }, rej => {
         console.log("endpoint broke");
         this.broke = true;
         this.dataLoading = false;
       });
 
-      this.httpService.search_time().then(_ => {
-        this.searchTime = this.httpService.getTime();
-      }, rej => {
-        this.searchTime = '0'
-      });
-
     }
     else {
       this.httpService.search_tfidf(searchTerm).then(_ => {
-        this.broke = false;
-        this.noResults = false;
         this.urls = [];
         this.urls = this.httpService.getData();
 
@@ -67,7 +72,7 @@ export class AppComponent {
         console.log('fulfilled');
         this.dataLoading = false;
       }, rej => {
-        console.log("endpoint broke")
+        console.log("endpoint broke");
         this.broke = true;
         this.dataLoading = false;
       });
